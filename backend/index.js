@@ -98,6 +98,7 @@ app.post('/api/watcher', async (req,res) => {
         err:'invalid or missing token'
     })
   }
+  const user = await User.findById(decodedToken.id)
 
   console.log('price',price)
 
@@ -109,9 +110,11 @@ app.post('/api/watcher', async (req,res) => {
       date: new Date()
     }],
     watching: true,
-    User: decodedToken.id
+    User: user._id
   })
   const response = await newWatcher.save()
+  user.priceWatchers = user.priceWatchers.concat(response._id)
+  await user.save()
   res.send(response)
 })
 
@@ -158,9 +161,19 @@ const getPrices = async () => {
 }
 
 
-app.get('/price', async (req,res) => {
-  const price = await getPrices()
-  res.send(price).status(200)
+app.get('/updatePriceForAll', async (req,res) => {
+  res.send('updating prices').status(200)
+  await getPrices()
+})
+
+app.get('/api/user', async (req,res) => {
+  const token = req.token
+  const decodedToken = jwt.verify(token,process.env.SECRET)
+  const userId = decodedToken.id
+  console.log(userId)
+  const user = await User.findById(userId).populate('priceWatchers')
+  console.log(user)
+  res.status(200).send(user.priceWatchers)
 })
 
 const PORT = 5000
