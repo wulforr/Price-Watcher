@@ -55,7 +55,14 @@ app.post('/api/user/login', async (req,res) => {
   const body = req.body
   const user = await User.findOne({userName: body.userName})
 
-  const isPasswordCorrect = user === null ? false : await bcrypt.compare(body.userName, user.passwordHash)
+  const isPasswordCorrect = user === null ? false : await bcrypt.compare(body.password, user.passwordHash)
+
+  if(!(user && isPasswordCorrect)){
+    res.status(401).json({
+      err: 'username or password is incorrect'
+    })
+    return
+  }
 
   const userToken = {
     userName: user.userName,
@@ -73,53 +80,87 @@ app.post('/api/user/login', async (req,res) => {
 
 app.post('/api/watcher', async (req,res) => {
   const body = req.body
+  const webpage = await axios.get(body.url)
+  const $ = cheerio.load(webpage.data)
+  const price = $('#priceblock_ourprice').text().substring(2)
+  console.log('price',price)
+  if(isNaN(price)){
+    res.status(400).send('cannot process this website')
+    return
+  }
+
+  const token = req.token
+
+  const decodedToken = jwt.verify(token,process.env.SECRET)
+
+  if(!token || !decodedToken.id){
+    return response.status(401).json({
+        err:'invalid or missing token'
+    })
+  }
+
+  console.log('price',price)
+
   const newWatcher = new Watcher({
     url: body.url,
-    watching: true
+    maxPrice:body.maxPrice,
+    pastPrices: [{
+      price,
+      date: new Date()
+    }],
+    watching: true,
+    User: decodedToken.id
   })
   const response = await newWatcher.save()
   res.send(response)
 })
 
+const sendEmail = (email) => {
+  console.log('email', email)
+  return new Promise(resolve =>
+    setTimeout(() => {
+      console.log('Operation performed:', email);
+      resolve(email);
+    }, 2000))
+}
+
 const getPrices = async () => {
   console.time('getprices')
-  const watchers = await Watcher.find({watching: true})
+  const watchers = await Watcher.find({watching: true}).populate({path: 'User'})
+  console.log('watchers',watchers)
   let prices = []
   const ans = []
+  
   const listOfPromises = watchers.map(ele => axios.get(ele.url))
-  // for (const promise of listOfPromises) {
-    //   const req = await promise
-    //   prices.push(req)
-    // }
+  
   prices = await Promise.all(listOfPromises)
   
   for(let i =0; i<prices.length;i++){
     const $ = cheerio.load(prices[i].data)
-    const price = $('#priceblock_ourprice').text()
+    const price = $('#priceblock_ourprice').text().substring(2)
     ans.push(price)
   }
 
   const updatePrices = watchers.map((ele,index) => Watcher.findOneAndUpdate({_id: ele._id}, {$set: {pastPrices: ele.pastPrices.concat({price:ans[index],date: new Date()})}}))
   const resp = await Promise.all(updatePrices)
-  console.log(resp)
+  const sendEmailPromise = []
+
+  for(let i= 0; i<watchers.length;i++){
+    if(ans[i]<watchers[i].maxPrice)
+      sendEmailPromise.push(sendEmail(watchers[i].User.email))
+  }
+  
+  const emails = await Promise.all(sendEmailPromise)
+  console.log(emails)
+
   console.timeEnd('getprices')
   return ans
-  // watchers.forEach(element => {
-  //   prices.push(axios.get(element.url))
-  // });
-  // const finalprices =await Promise.all(watchers.map(ele => axios.post(ele.url)))
-  // // const finalprices = await Promise.all(prices)
-  // finalprices.forEach(ele => {
-  //   const $ = cheerio.load(ele.data)
-  //   const price = $('#priceblock_ourprice').text()
-  //   ans.push(price)
-  // })
-  // return ans
 }
+
 
 app.get('/price', async (req,res) => {
   const price = await getPrices()
-  res.send(price)
+  res.send(price).status(200)
 })
 
 const PORT = 5000

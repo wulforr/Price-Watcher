@@ -1,6 +1,8 @@
-POST http://localhost:5001/api/watcher
+POST http://localhost:5000/api/watcher
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ild1bGZvcnJycnIiLCJpZCI6IjVlOWY3YzZkMzFiNmE2OGZjYjA3NjU5NCIsImlhdCI6MTU4NzU5NDMyN30.9fSwWjxoLkyDThHmBbNfeAj6R9pT623nzTDvOeRXPhQ
 
 {
-  "url":"https://www.amazon.in/Nestle-Everyday-Dairy-Whitener-Pouch/dp/B00NYZQX9A/ref=lp_21246948031_1_1?srs=21246948031&ie=UTF8&qid=1587529028&sr=8-1"
+  "maxPrice": "1000",
+  "url":"https://www.amazon.in/dp/B07CNMJWTZ/ref=sspa_dk_detail_2?pd_rd_i=B07CNMJWTZ&pd_rd_w=wr8uC&pf_rd_p=1801b34c-8af9-42b5-8961-11f124edc99b&pd_rd_wg=K5kfa&pf_rd_r=WG05KY6YFHS14YG3CPMH&pd_rd_r=020d3c16-d044-4533-b433-f1a7a3840199&smid=A1VGPAKPY99CH1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyUEg5SjdUVFFORUlOJmVuY3J5cHRlZElkPUEwMzc0MTEyMzg1QTNZTkszMkdZVCZlbmNyeXB0ZWRBZElkPUEwMzE5MjMyM1RZOUNSUzVXUUtKQiZ3aWRnZXROYW1lPXNwX2RldGFpbCZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1"
 }
