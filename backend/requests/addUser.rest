@@ -1,0 +1,11 @@
+POST http://localhost:5000/api/user
+Content-Type: application/json
+
+{
+    "userName": "Wulforrrrr",
+    "name":"shaurya",
+    "password": "mypasswordisstrong",
+    "email": "gsshaurya@gmail.com",
+    "phone": 8004511111,
+    "priceWatchers":["5e87af9d89fd48483f44d5ad","5e8ce33c8f2a89686c6aeae9"]
+}

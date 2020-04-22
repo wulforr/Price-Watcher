@@ -1,0 +1,6 @@
+POST http://localhost:5001/api/watcher
+Content-Type: application/json
+
+{
+  "url":"https://www.amazon.in/Nestle-Everyday-Dairy-Whitener-Pouch/dp/B00NYZQX9A/ref=lp_21246948031_1_1?srs=21246948031&ie=UTF8&qid=1587529028&sr=8-1"
+}
