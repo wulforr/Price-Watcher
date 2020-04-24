@@ -1,0 +1,51 @@
+:root{
+  --main-bg-color: white;
+  --primary-color: #ff1654;
+  --test-color: #f953c6;
+  --secondry-color: #ff5864;
+  --another-color: #06d6a0;
+}
+
+.landingPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.contentdiv{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  flex-wrap: wrap;
+}
+h1{
+  color: var(--another-color);
+  font-size: 64px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.btn{
+  padding: 2%;
+  border-radius: 4px;
+  color: var(--main-bg-color);
+  background-color: var(--another-color);
+  border: 2px solid var(--another-color);
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.landingbuttonsdiv{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.landingbtn{
+  justify-self: center;
+  font-size: 18px;
+}

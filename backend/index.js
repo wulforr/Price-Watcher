@@ -2,15 +2,15 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
-require('dotenv').config()
-app.use(express.json())
-app.use(cors())
 const User = require('./models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Watcher = require('./models/Watcher')
 const axios = require('axios')
 const cheerio = require('cheerio')
+require('dotenv').config()
+app.use(express.json())
+app.use(cors())
 
 const url = process.env.MONGOURI
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,7 +39,6 @@ app.post('/api/user', async (req, res) => {
   const saltRounds = 10
   const hashedpass = await bcrypt.hash(body.password, saltRounds)
   const newUser = new User({
-    name: body.name,
     userName: body.userName,
     passwordHash: hashedpass,
     email: body.email,
@@ -52,6 +51,7 @@ app.post('/api/user', async (req, res) => {
 })
 
 app.post('/api/user/login', async (req,res) => {
+  console.log('login')
   const body = req.body
   const user = await User.findOne({userName: body.userName})
 
@@ -73,8 +73,11 @@ app.post('/api/user/login', async (req,res) => {
 
   res.status(200).json({
     token,
-    userName:user.userName,
-    name: user.name
+    userInfo: {
+      userName:user.userName,
+      email: user.email,
+      phone: user.phone
+    }
   })
 })
 
