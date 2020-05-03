@@ -46,7 +46,22 @@ app.post('/api/user', async (req, res) => {
     priceWatchers: []
   })
   const response = await newUser.save()
-  res.send(response)
+
+  const userToken = {
+    userName: response.userName,
+    id: response._id
+  }
+
+  const token = jwt.sign(userToken, process.env.SECRET)
+
+  res.status(200).json({
+    token,
+    userInfo: {
+      userName:response.userName,
+      email: response.email,
+      phone: response.phone
+    }
+  })
 
 })
 
@@ -171,6 +186,7 @@ app.get('/updatePriceForAll', async (req,res) => {
 
 app.get('/api/user', async (req,res) => {
   const token = req.token
+  console.log(token)
   const decodedToken = jwt.verify(token,process.env.SECRET)
   const userId = decodedToken.id
   console.log(userId)

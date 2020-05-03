@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default function LandingPage(props) {
   return (
@@ -9,7 +10,9 @@ export default function LandingPage(props) {
           A tool to help you buy items in your wishlist at the price that you are comfortable with.
         </p>
         <div className="landingbuttonsdiv">
-          <button className='landingbtn btn' >Login/Signup</button>
+          <button className='landingbtn btn' >
+            <Link to ='/login' >Login/Signup</Link>
+            </button>
         </div>
       </div>
     </div>

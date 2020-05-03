@@ -9,16 +9,23 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch(action.type){
-    case 'TOGGLEISLOGGEDIN' : return {...state,isLoggedIn:!state.isLoggedIn}
+    case 'SETISLOGGEDIN' : return {...state,isLoggedIn:true}
+    case 'REMOVELOGGEDIN': return {...state, isLoggedIn: false}
     case 'SETUSER': return {...state, userInfo: action.userInfo}
     default: return state
   }
 }
 
-export const toggleLogin = () => {
+export const setLoggedIn = () => {
   return({
-    type: 'TOGGLEISLOGGEDIN'
+    type: 'SETISLOGGEDIN'
   })
+}
+
+export const removeLoggedIn = () => {
+  return {
+    type: 'REMOVELOGGEDIN'
+  }
 }
 
 export const setUser = (userInfo) => {
