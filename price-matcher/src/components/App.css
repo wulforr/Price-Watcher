@@ -195,4 +195,21 @@ h1{
   border-left: 4px solid var(--another-color);
   /* background-color: rgba(240, 240, 240, 0.3); */
   background-color: var(--main-bg-color);
+  margin-top: 2%;
+  position: relative;
+}
+
+.watcher:hover{
+  cursor: pointer;
+}
+
+.watcher:hover .topRight{
+  display: block;
+}
+
+.topRight{
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
 }

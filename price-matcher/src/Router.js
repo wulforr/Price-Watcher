@@ -7,6 +7,7 @@
     import watcherService from './services/watcher'
     import { useDispatch } from 'react-redux'
     import {setUser, setLoggedIn} from './reducers/userReducer'
+    import SingleWatcher from './components/SingleWatcher'
 
     export default function Router() {
       const dispatch = useDispatch()
@@ -30,6 +31,7 @@
               <Route path='/login' component={Login} />
               <Route path='/signup' component={Signup} />
               <Route path='/watchers' component={AllWatchers} />
+              <Route path='/singleWatcher' component={SingleWatcher} />
             </Switch>
           </BrowserRouter>
         </div>

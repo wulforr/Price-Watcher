@@ -4,6 +4,7 @@ const watcherSchema = new mongoose.Schema({
   url: String,
   maxPrice: Number,
   pastPrices: Array,
+  title: String,
   User: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

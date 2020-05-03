@@ -1,5 +1,6 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:5000/api/user'
+const watcherbaseUrl = 'http://localhost:5000/api/watcher'
 
 let token = null
 
@@ -18,4 +19,14 @@ const getWatchers = async () => {
   return res.data
 }
 
-export default {setToken, getWatchers}
+const addWatcher = async (newWatcher) => {
+  const config = {
+    headers: { Authorization: token}
+  }
+
+  const res = await axios.post(watcherbaseUrl, newWatcher, config) 
+
+  return res.data
+}
+
+export default {setToken, getWatchers, addWatcher}

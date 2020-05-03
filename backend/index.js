@@ -101,7 +101,8 @@ app.post('/api/watcher', async (req,res) => {
   const webpage = await axios.get(body.url)
   const $ = cheerio.load(webpage.data)
   const price = $('#priceblock_ourprice').text().substring(2)
-  console.log('price',price)
+  let title = $('#productTitle').text()
+  title = title.replace(/\s\s+/g, ' ')
   if(isNaN(price)){
     res.status(400).send('cannot process this website')
     return
@@ -118,14 +119,13 @@ app.post('/api/watcher', async (req,res) => {
   }
   const user = await User.findById(decodedToken.id)
 
-  console.log('price',price)
-
   const newWatcher = new Watcher({
     url: body.url,
     maxPrice:body.maxPrice,
+    title,
     pastPrices: [{
       price,
-      date: new Date()
+      date: new Date().toLocaleDateString()
     }],
     watching: true,
     User: user._id
@@ -162,7 +162,7 @@ const getPrices = async () => {
     ans.push(price)
   }
 
-  const updatePrices = watchers.map((ele,index) => Watcher.findOneAndUpdate({_id: ele._id}, {$set: {pastPrices: ele.pastPrices.concat({price:ans[index],date: new Date()})}}))
+  const updatePrices = watchers.map((ele,index) => Watcher.findOneAndUpdate({_id: ele._id}, {$set: {pastPrices: ele.pastPrices.concat({price:ans[index],date: new Date().toLocaleDateString()})}}))
   const resp = await Promise.all(updatePrices)
   const sendEmailPromise = []
 

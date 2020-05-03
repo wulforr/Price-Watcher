@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setIsLoading, removeIsLoading, setItems} from '../reducers/watcherReducer'
 import Login from './Login'
 import AddWatcher from './AddWatcher'
-import watcher from './Watcher'
+// import watcher from './Watcher'
 import Watcher from './Watcher'
 
 export default function AllWatchers() {
@@ -30,7 +30,7 @@ export default function AllWatchers() {
     isLoggedIn ?
     <div className='allwatchers'>
       <AddWatcher />
-      { allWatchers.items.map(ele => <Watcher details={ele} />)  }
+      { allWatchers.items.map(ele => <Watcher details={ele} key={ele._id} />)  }
     </div> :
     <Login />
   )
