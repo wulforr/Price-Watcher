@@ -195,5 +195,19 @@ app.get('/api/user', async (req,res) => {
   res.status(200).send(user.priceWatchers)
 })
 
+app.delete('/api/watcher/:id', async (req,res) => {
+  const id = req.params.id
+  const watcher = await Watcher.findById(id)
+  const token = req.token
+  const decodedToken = jwt.verify(token,process.env.SECRET)
+  const userId = decodedToken.id
+  if(userId !== watcher.User){
+    return res.send('you are not allowed to delete this watcher as you are not the user').status(400)
+  }
+  await Watcher.findByIdAndDelete(id)
+  res.send('deleted').status(204)
+
+})
+
 const PORT = 5000
 app.listen(PORT, () => console.log('server started'))
