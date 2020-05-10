@@ -33,6 +33,7 @@ app.use(getToken)
   res.send('Working')
 })
 
+// add User
 app.post('/api/user', async (req, res) => {
   const body = req.body
 
@@ -65,6 +66,7 @@ app.post('/api/user', async (req, res) => {
 
 })
 
+// login
 app.post('/api/user/login', async (req,res) => {
   console.log('login')
   const body = req.body
@@ -96,6 +98,8 @@ app.post('/api/user/login', async (req,res) => {
   })
 })
 
+
+// add watcher
 app.post('/api/watcher', async (req,res) => {
   const body = req.body
   const webpage = await axios.get(body.url)
@@ -136,6 +140,7 @@ app.post('/api/watcher', async (req,res) => {
   res.send(response)
 })
 
+
 const sendEmail = (email) => {
   console.log('email', email)
   return new Promise(resolve =>
@@ -144,6 +149,8 @@ const sendEmail = (email) => {
       resolve(email);
     }, 2000))
 }
+
+
 
 const getPrices = async () => {
   console.time('getprices')
@@ -179,11 +186,14 @@ const getPrices = async () => {
 }
 
 
+// update price for all watchers
 app.get('/updatePriceForAll', async (req,res) => {
   res.send('updating prices').status(200)
   await getPrices()
 })
 
+
+// get details of a user
 app.get('/api/user', async (req,res) => {
   const token = req.token
   console.log(token)
@@ -195,6 +205,8 @@ app.get('/api/user', async (req,res) => {
   res.status(200).send(user.priceWatchers)
 })
 
+
+// delete a watcher
 app.delete('/api/watcher/:id', async (req,res) => {
   const id = req.params.id
   const watcher = await Watcher.findById(id)
@@ -207,6 +219,16 @@ app.delete('/api/watcher/:id', async (req,res) => {
   await Watcher.findByIdAndDelete(id)
   res.send('deleted').status(204)
 
+})
+
+// update a watcher
+
+app.put('/api/watcher/:id', async (req,res) => {
+  const id = req.params.id
+  const body = req.body
+  const updatedWatcher = await Watcher.findOneAndUpdate({_id: id}, {$set: {maxPrice: body.price}})
+  console.log(updatedWatcher);
+  res.status(204).send('updated Successfully')
 })
 
 const PORT = 5000
