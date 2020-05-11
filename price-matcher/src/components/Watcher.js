@@ -1,5 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default function Watcher({ details }) {
 const history = useHistory()
@@ -7,8 +9,8 @@ const history = useHistory()
   return (
     <div className='watcher' onClick= {() => {history.push('/singleWatcher', {details})}} >
       <div className='topRight'>
-        <div>Add</div>
-        <div>Delete</div>
+        {/* <div>Add</div> */}
+        <div className='delete' ><FontAwesomeIcon icon={faTrash} color='white' /></div>
       </div>
       <h3>{details.title}</h3>
       <p>

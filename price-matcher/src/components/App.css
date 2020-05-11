@@ -197,6 +197,7 @@ h1{
   background-color: var(--main-bg-color);
   margin-top: 2%;
   position: relative;
+  overflow: hidden;
 }
 
 .watcher:hover{
@@ -204,12 +205,31 @@ h1{
 }
 
 .watcher:hover .topRight{
-  display: block;
+  /* display: block; */
 }
 
 .topRight{
   position: absolute;
   right: 0;
   top: 0;
-  display: none;
+  display: block;
+}
+
+.delete{
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 40px;
+  margin-right: -40px;
+  transition: 0.2s linear;
+  opacity: 0;
+  width: 40px;
+}
+
+.watcher:hover .delete{
+  opacity: 1;
+  margin-right: 0;
+  /* width: 40px; */
 }
