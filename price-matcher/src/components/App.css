@@ -233,3 +233,11 @@ h1{
   margin-right: 0;
   /* width: 40px; */
 }
+
+.chartTitle{
+  color: var(--another-color);
+}
+
+.lighten{
+  opacity: 0.5;
+}

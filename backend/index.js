@@ -169,7 +169,7 @@ const getPrices = async () => {
     ans.push(price)
   }
 
-  const updatePrices = watchers.map((ele,index) => Watcher.findOneAndUpdate({_id: ele._id}, {$set: {pastPrices: ele.pastPrices.concat({price:ans[index],date: new Date().toLocaleDateString()})}}))
+  const updatePrices = watchers.map((ele,index) => Watcher.findOneAndUpdate({_id: ele._id}, {$set: {pastPrices: ele.pastPrices.concat({price:ans[index],date: new Date()})}}))
   const resp = await Promise.all(updatePrices)
   const sendEmailPromise = []
 
