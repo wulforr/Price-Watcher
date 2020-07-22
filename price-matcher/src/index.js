@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import {Provider} from 'react-redux'
@@ -7,7 +7,7 @@ import Router from './Router'
 
 ReactDOM.render(
   <Provider store = {store} >
-    <Router />
+      <Router />
   </Provider>,
   document.getElementById('root')
 )

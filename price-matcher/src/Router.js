@@ -1,13 +1,15 @@
-    import React, {useEffect} from 'react'
+    import React, {useEffect, Suspense} from 'react'
     import {BrowserRouter, Switch, Route} from 'react-router-dom'
-    import App from './components/App'
-    import Login from './components/Login'
-    import Signup from './components/Signup'
-    import AllWatchers from './components/AllWatchers'
     import watcherService from './services/watcher'
     import { useDispatch } from 'react-redux'
     import {setUser, setLoggedIn} from './reducers/userReducer'
-    import SingleWatcher from './components/SingleWatcher'
+    const SingleWatcher = React.lazy(() => import('./components/SingleWatcher'))
+    const Login = React.lazy(() => import('./components/Login'))
+    const Signup = React.lazy(() => import('./components/Signup'))
+    const App = React.lazy(() => import('./components/App'))
+    const AllWatchers = React.lazy(() => import('./components/AllWatchers'))
+
+
 
     export default function Router() {
       const dispatch = useDispatch()
@@ -25,6 +27,7 @@
 
       return (
         <div className='container' >
+          <Suspense fallback={<div>Loading...</div>}>
           <BrowserRouter>
             <Switch>
               <Route exact path='/' component={App} />
@@ -34,6 +37,7 @@
               <Route path='/singleWatcher' component={SingleWatcher} />
             </Switch>
           </BrowserRouter>
+          </Suspense>
         </div>
       )
     }

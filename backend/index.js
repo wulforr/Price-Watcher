@@ -104,9 +104,11 @@ app.post('/api/watcher', async (req,res) => {
   const body = req.body
   const webpage = await axios.get(body.url)
   const $ = cheerio.load(webpage.data)
-  const price = $('#priceblock_ourprice').text().substring(2)
+  let price = $('#priceblock_ourprice').text().substring(2)
   let title = $('#productTitle').text()
   title = title.replace(/\s\s+/g, ' ')
+  price = price.replace(',','')
+  console.log('price',price)
   if(isNaN(price)){
     res.status(400).send('cannot process this website')
     return
@@ -129,7 +131,7 @@ app.post('/api/watcher', async (req,res) => {
     title,
     pastPrices: [{
       price,
-      date: new Date().toLocaleDateString()
+      date: new Date()
     }],
     watching: true,
     User: user._id
