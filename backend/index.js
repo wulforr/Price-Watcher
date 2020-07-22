@@ -167,7 +167,8 @@ const getPrices = async () => {
   
   for(let i =0; i<prices.length;i++){
     const $ = cheerio.load(prices[i].data)
-    const price = $('#priceblock_ourprice').text().substring(2)
+    let price = $('#priceblock_ourprice').text().substring(2)
+    price = price.replace(',','')
     ans.push(price)
   }
 
@@ -198,7 +199,7 @@ app.get('/updatePriceForAll', async (req,res) => {
 // get details of a user
 app.get('/api/user', async (req,res) => {
   const token = req.token
-  console.log(token)
+  console.log('token',token)
   const decodedToken = jwt.verify(token,process.env.SECRET)
   const userId = decodedToken.id
   console.log(userId)

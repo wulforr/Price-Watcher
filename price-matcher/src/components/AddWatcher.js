@@ -1,11 +1,12 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {setPrice, setUrl} from '../reducers/watcherReducer'
+import {setPrice, setUrl, setItems} from '../reducers/watcherReducer'
 import watcherService from '../services/watcher'
 
 export default function AddWatcher() {
   const url = useSelector(state => state.watchers.url)
   const price = useSelector(state => state.watchers.price)
+  const dispatch = useDispatch()
 
   const handleAddWatcher = async(e) => {
     e.preventDefault()
@@ -13,10 +14,16 @@ export default function AddWatcher() {
       url,
       maxPrice: price
     }
-    await watcherService.addWatcher(newWatcher)
+    try{
+      const res = await watcherService.addWatcher(newWatcher)
+      const update = await watcherService.getWatchers()
+      dispatch(setItems(res))
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 
-  const dispatch = useDispatch()
   return (
     <div className='addwatcher' >
       <div className='inputSet'>

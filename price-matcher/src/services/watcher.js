@@ -4,29 +4,37 @@ const watcherbaseUrl = 'http://localhost:5000/api/watcher'
 
 let token = null
 
+let config = {
+  headers: { Authorization: token}
+}
+
 const setToken = newToken => {
   token = `bearer ${newToken}`
   // console.log(token)
+  config = {
+    headers: { Authorization: token}
+  }
 }
 
 const getWatchers = async () => {
-  const config = {
-    headers: { Authorization: token}
-  }
   // console.log(token,config)
   const res = await axios.get(baseUrl, config)
-  // console.log(res.data)
+  console.log(res.data)
   return res.data
 }
 
 const addWatcher = async (newWatcher) => {
-  const config = {
-    headers: { Authorization: token}
-  }
-
+  
   const res = await axios.post(watcherbaseUrl, newWatcher, config) 
 
   return res.data
 }
 
-export default {setToken, getWatchers, addWatcher}
+const deleteWatcher = async (id) => {
+
+  const res = await axios.post(`${watcherbaseUrl}/id`)
+
+  return res.data
+}
+
+export default {setToken, getWatchers, addWatcher, deleteWatcher}

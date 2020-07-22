@@ -1,5 +1,6 @@
     import React, {useEffect, Suspense} from 'react'
     import {BrowserRouter, Switch, Route} from 'react-router-dom'
+    import './components/App.css'
     import watcherService from './services/watcher'
     import { useDispatch } from 'react-redux'
     import {setUser, setLoggedIn} from './reducers/userReducer'

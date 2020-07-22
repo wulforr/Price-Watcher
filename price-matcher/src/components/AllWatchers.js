@@ -12,24 +12,27 @@ export default function AllWatchers() {
   const allWatchers = useSelector(state => state.watchers)
   const isLoggedIn = useSelector(state => state.User.isLoggedIn)
 
+  const fetchwatchers =  async() =>{
+    if(isLoggedIn){
+    dispatch(setIsLoading())
+    console.log('calling get watchers')
+    const res = await watcherService.getWatchers()
+    console.log(res)
+    dispatch(setItems(res))
+    dispatch(removeIsLoading())
+  }}
+
   useEffect(() => {
     console.log('allwatcher', isLoggedIn)
-    async function fetchwatchers(){
-      if(isLoggedIn){
-      dispatch(setIsLoading())
-      const res = await watcherService.getWatchers()
-      dispatch(setItems(res))
-      dispatch(removeIsLoading())
-    }}
     fetchwatchers()
   }, [dispatch, isLoggedIn])  
 
-  // console.log(allWatchers)
+  console.log(allWatchers)
 
   return (
     isLoggedIn ?
     <div className='allwatchers'>
-      <AddWatcher />
+      <AddWatcher fetchwatchers={fetchwatchers} />
       { allWatchers.items.map(ele => <Watcher details={ele} key={ele._id} />)  }
     </div> :
     <Login />
