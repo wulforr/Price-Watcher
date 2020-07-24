@@ -1,45 +1,45 @@
-:root{
+:root {
   --main-bg-color: white;
   --primary-color: #ff1654;
   --test-color: #f953c6;
   --secondry-color: #ff5864;
   --another-color: #06d69e;
-  --secondary-green: #1aa781; 
+  --secondary-green: #1aa781;
 }
 
-.container{
+.container {
   width: 100vw;
   min-height: 100vh;
   background-color: rgba(240, 240, 240, 0.6);
 }
 
-a{
+a {
   text-decoration: none;
   color: var(--main-bg-color);
 }
 
-.landingPage{
+.landingPage {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
 }
-.contentdiv{
+.contentdiv {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 50%;
   flex-wrap: wrap;
 }
-h1{
+h1 {
   color: var(--another-color);
   font-size: 64px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
-.btn{
+.btn {
   /* padding: 2%; */
   border-radius: 4px;
   color: var(--main-bg-color);
@@ -51,27 +51,34 @@ h1{
 
 .btn:hover {
   cursor: pointer;
-  background: var(--another-color);  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, var(--another-color),var(--secondary-green));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, var(--another-color),var(--secondary-green)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: var(--another-color); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    var(--another-color),
+    var(--secondary-green)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    var(--another-color),
+    var(--secondary-green)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.landingbuttonsdiv{
+.landingbuttonsdiv {
   display: flex;
   justify-content: flex-start;
   width: 100%;
 }
 
-.landingbtn{
-  padding: 2%;  
+.landingbtn {
+  padding: 2%;
 }
 
-.loginbtn{
+.loginbtn {
   padding: 0.5% 1%;
 }
 
-.loginDiv{
+.loginDiv {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -80,7 +87,7 @@ h1{
   align-items: center;
 }
 
-.loginContainer{
+.loginContainer {
   width: 50%;
   height: 50%;
   background-color: var(--main-bg-color);
@@ -92,37 +99,33 @@ h1{
   text-align: center;
   max-width: 700px;
   padding: 2% 1%;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
   border-left: 8px solid var(--another-color);
   border-radius: 12px;
 }
 
-.inputSet{
+.inputSet {
   width: 100%;
 }
 
-.loginbtn{
+.loginbtn {
   padding: 1% 5%;
 }
 
-.inputText{
+.inputText {
   width: 50%;
   padding: 1% 2%;
   margin: 0% 2%;
   border: 1px solid #888888;
   border-radius: 4px;
 }
-.inputText:focus{
-  border: 2px solid var(--another-color)
+.inputText:focus {
+  border: 2px solid var(--another-color);
 }
 
-.loginText{
+.loginText {
   /* color: var(--another-color); */
   width: 100%;
 }
@@ -133,7 +136,7 @@ h1{
   font-size: 22px;
 }
 
-.allwatchers{
+.allwatchers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +147,7 @@ h1{
   /* min-height: 100vh; */
 }
 
-.addwatcher{
+.addwatcher {
   width: 50%;
   height: 150px;
   /* border: 2px solid var(--primary-color); */
@@ -155,43 +158,36 @@ h1{
   flex-wrap: wrap;
   margin: 5% 15%;
   border-radius: 0px 6px 6px 0px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072);
   border-left: 4px solid var(--primary-color);
   /* background-color: rgba(240, 240, 240, 0.3); */
   background-color: var(--main-bg-color);
 }
-.addwatcherbtn{
+.addwatcherbtn {
   padding: 1% 3%;
   margin-left: 20%;
 }
 
-.urlInput{
+.urlInput {
   width: 80%;
 }
 
-.priceInput{ 
-  width:60%;
-  padding: 3% 6%; 
+.priceInput {
+  width: 60%;
+  padding: 3% 6%;
 }
 
-.priceInputRow{
+.priceInputRow {
   width: 40%;
 }
-.watcher{
+.watcher {
   padding: 2%;
   width: 50%;
   border-radius: 0px 6px 6px 0px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  2.8px 0 2.2px rgba(0, 0, 0, 0.034),
-  6.7px 0 5.3px rgba(0, 0, 0, 0.048);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    2.8px 0 2.2px rgba(0, 0, 0, 0.034), 6.7px 0 5.3px rgba(0, 0, 0, 0.048);
   border-left: 4px solid var(--another-color);
   /* background-color: rgba(240, 240, 240, 0.3); */
   background-color: var(--main-bg-color);
@@ -200,22 +196,22 @@ h1{
   overflow: hidden;
 }
 
-.watcher:hover{
+.watcher:hover {
   cursor: pointer;
 }
 
-.watcher:hover .topRight{
+.watcher:hover .topRight {
   /* display: block; */
 }
 
-.topRight{
+.topRight {
   position: absolute;
   right: 0;
   top: 0;
   display: block;
 }
 
-.delete{
+.delete {
   background-color: red;
   display: flex;
   justify-content: center;
@@ -228,16 +224,41 @@ h1{
   width: 40px;
 }
 
-.watcher:hover .delete{
+.watcher:hover .delete {
   opacity: 1;
   margin-right: 0;
   /* width: 40px; */
 }
 
-.chartTitle{
+.chartTitle {
   color: var(--another-color);
 }
 
-.lighten{
+.lighten {
   opacity: 0.5;
+}
+
+.notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  width: 200px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 20px;
+  background-color: #fafafa;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

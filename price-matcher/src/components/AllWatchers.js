@@ -1,40 +1,49 @@
-import React, { useEffect } from 'react'
-import watcherService from '../services/watcher'
-import {useDispatch, useSelector} from 'react-redux'
-import {setIsLoading, removeIsLoading, setItems} from '../reducers/watcherReducer'
-import Login from './Login'
-import AddWatcher from './AddWatcher'
+import React, { useEffect } from 'react';
+import watcherService from '../services/watcher';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLoading, removeIsLoading, setItems } from '../reducers/watcherReducer';
+import Login from './Login';
+import AddWatcher from './AddWatcher';
+import Notification from './Notification';
 // import watcher from './Watcher'
-import Watcher from './Watcher'
+import Watcher from './Watcher';
 
 export default function AllWatchers() {
-  const dispatch = useDispatch()
-  const allWatchers = useSelector(state => state.watchers)
-  const isLoggedIn = useSelector(state => state.User.isLoggedIn)
+  const dispatch = useDispatch();
+  const allWatchers = useSelector((state) => state.watchers);
+  const isLoggedIn = useSelector((state) => state.User.isLoggedIn);
+  const notification = useSelector((state) => state.notification);
 
-  const fetchwatchers =  async() =>{
-    if(isLoggedIn){
-    dispatch(setIsLoading())
-    console.log('calling get watchers')
-    const res = await watcherService.getWatchers()
-    console.log(res)
-    dispatch(setItems(res))
-    dispatch(removeIsLoading())
-  }}
+  const fetchwatchers = async () => {
+    if (isLoggedIn) {
+      dispatch(setIsLoading());
+      const res = await watcherService.getWatchers();
+      dispatch(setItems(res));
+      dispatch(removeIsLoading());
+    }
+  };
 
   useEffect(() => {
-    console.log('allwatcher', isLoggedIn)
-    fetchwatchers()
-  }, [dispatch, isLoggedIn])  
+    console.log('mounted');
+    return () => console.log('unmounted');
+  }, []);
 
-  console.log(allWatchers)
+  useEffect(() => {
+    console.log('allwatcher', isLoggedIn);
+    fetchwatchers();
+  }, [dispatch, isLoggedIn]);
 
-  return (
-    isLoggedIn ?
-    <div className='allwatchers'>
+  console.count('rendered');
+
+  return isLoggedIn ? (
+    <div className="allwatchers">
+      {notification.length > 0 ? <Notification /> : <></>}
       <AddWatcher fetchwatchers={fetchwatchers} />
-      { allWatchers.items.map(ele => <Watcher details={ele} key={ele._id} />)  }
-    </div> :
+      {allWatchers.items.map((ele) => (
+        <Watcher details={ele} key={ele._id} />
+      ))}
+    </div>
+  ) : (
     <Login />
-  )
+  );
 }
