@@ -5,11 +5,17 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import watcherService from '../services/watcher';
 import { useSelector, useDispatch } from 'react-redux';
 import { setItems } from '../reducers/watcherReducer';
-import { addNotification, RemoveNotification } from '../reducers/notificationReducer';
+import {
+  addNotification,
+  RemoveNotification,
+  setColor,
+  setTimeoutId,
+} from '../reducers/notificationReducer';
 
 export default function Watcher({ details }) {
   const history = useHistory();
   const items = useSelector((state) => state.watchers.items);
+  const notification = useSelector((state) => state.notification);
   const dispatch = useDispatch();
 
   const deleteWatcherWrapper = async (e) => {
@@ -21,16 +27,22 @@ export default function Watcher({ details }) {
     const tempItems = items.filter((ele) => ele._id !== details._id);
     console.log(tempItems, details);
     dispatch(setItems(tempItems));
+    // clear timeout before creating a new timeout this clears if successive clicks from user
+    clearTimeout(notification.timeoutId);
     try {
       await watcherService.deleteWatcher(details._id);
-      dispatch(addNotification('Added watcher successfully'));
-      setTimeout(() => dispatch(RemoveNotification()), 2000);
+      dispatch(setColor('green'));
+      dispatch(addNotification('Deleted watcher successfully'));
+      const timeoutId = setTimeout(() => dispatch(RemoveNotification()), 2000);
+      dispatch(setTimeoutId(timeoutId));
     } catch (err) {
       console.log(err);
       //if deletion of item is failed revert back changes
       dispatch(setItems(itemsBeforeDeletion));
+      dispatch(setColor('red'));
       dispatch(addNotification('There was an error while adding the watcher please try again'));
-      setTimeout(() => dispatch(RemoveNotification()), 2000);
+      const timeoutId = setTimeout(() => dispatch(RemoveNotification()), 2000);
+      dispatch(setTimeoutId(timeoutId));
     }
   };
 

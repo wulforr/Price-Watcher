@@ -209,12 +209,9 @@ app.get('/updatePriceForAll', async (req, res) => {
 // get details of a user
 app.get('/api/user', async (req, res) => {
   const token = req.token;
-  console.log('token', token);
   const decodedToken = jwt.verify(token, process.env.SECRET);
   const userId = decodedToken.id;
-  console.log(userId);
   const user = await User.findById(userId).populate('priceWatchers');
-  console.log(user);
   res.status(200).send(user.priceWatchers);
 });
 
@@ -225,12 +222,13 @@ app.delete('/api/watcher/:id', async (req, res) => {
   const token = req.token;
   const decodedToken = jwt.verify(token, process.env.SECRET);
   const userId = decodedToken.id;
-  if (userId !== watcher.User) {
+  if (userId.toString() !== watcher.User.toString()) {
     return res
-      .send('you are not allowed to delete this watcher as you are not the user')
-      .status(400);
+      .status(400)
+      .send('you are not allowed to delete this watcher as you are not the user');
   }
-  await Watcher.findByIdAndDelete(id);
+  const response = await Watcher.findByIdAndDelete(id);
+  console.log('resp', response);
   res.send('deleted').status(204);
 });
 

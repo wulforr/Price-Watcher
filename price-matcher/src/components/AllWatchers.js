@@ -37,7 +37,7 @@ export default function AllWatchers() {
 
   return isLoggedIn ? (
     <div className="allwatchers">
-      {notification.length > 0 ? <Notification /> : <></>}
+      {notification.message.length > 0 ? <Notification /> : <></>}
       <AddWatcher fetchwatchers={fetchwatchers} />
       {allWatchers.items.map((ele) => (
         <Watcher details={ele} key={ele._id} />
