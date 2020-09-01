@@ -53,3 +53,10 @@ export const getMinPrice = (data) => {
   });
   return minPrice;
 };
+
+export const getFormattedText = (text, maxLength = 40) => {
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength) + '...';
+  }
+  return text;
+};

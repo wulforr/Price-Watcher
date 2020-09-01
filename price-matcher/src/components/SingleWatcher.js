@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts';
-import { getDates, getMaxPrice, getMinPrice } from '../utils/utils';
+import { getDates, getMaxPrice, getMinPrice, getFormattedText } from '../utils/utils';
 import './SingleWatcher.css';
 
 export default function SingleWatcher(props) {
@@ -33,7 +33,7 @@ export default function SingleWatcher(props) {
   );
   return (
     <div className="single-watcher-wrapper">
-      <h2 className="chartTitle">{details.title}</h2>
+      <h2 className="chartTitle">{getFormattedText(details.title, 50)}</h2>
       {/* <h3 className="lighten">Price Graph</h3> */}
       <select value={chartFilter} onChange={(e) => setChartFilter(e.target.value)}>
         <option value="daily">Daily</option>

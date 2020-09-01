@@ -15,8 +15,6 @@ export default function AllWatchers() {
   const notification = useSelector((state) => state.notification);
   const isLoading = useSelector((state) => state.watchers.isloading);
 
-  console.log(isLoading);
-
   const fetchwatchers = async () => {
     if (isLoggedIn) {
       dispatch(setIsLoading());

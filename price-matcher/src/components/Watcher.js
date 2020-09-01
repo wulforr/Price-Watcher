@@ -11,7 +11,7 @@ import {
   setColor,
   setTimeoutId,
 } from '../reducers/notificationReducer';
-import { getPrice } from '../utils/utils';
+import { getPrice, getFormattedText } from '../utils/utils';
 
 export default function Watcher({ details }) {
   const history = useHistory();
@@ -41,7 +41,7 @@ export default function Watcher({ details }) {
       //if deletion of item is failed revert back changes
       dispatch(setItems(itemsBeforeDeletion));
       dispatch(setColor('red'));
-      dispatch(addNotification('There was an error while adding the watcher please try again'));
+      dispatch(addNotification('There was an error while deleting the watcher please try again'));
       const timeoutId = setTimeout(() => dispatch(RemoveNotification()), 2000);
       dispatch(setTimeoutId(timeoutId));
     }
@@ -65,7 +65,7 @@ export default function Watcher({ details }) {
           <FontAwesomeIcon icon={faTrash} color="white" />
         </div>
       </div>
-      <h3>{details.title}</h3>
+      <h3>{getFormattedText(details.title)}</h3>
       <p>yourprice - {details.maxPrice}</p>
       <p>currentPrice - {getPrice(details)}</p>
     </div>

@@ -28,6 +28,22 @@ export default function Signup() {
     dispatch(setPhone(e.target.value));
   };
 
+  const checkValidationAndSubmit = () => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (signup.userName.length < 4) {
+      return setErrorMsgText('Username must be greater than or equal to 4 characters');
+    } else if (signup.password.length < 8) {
+      return setErrorMsgText('Password must be greater than or equal to 8 characters');
+    } else if (!re.test(String(signup.email).toLowerCase())) {
+      return setErrorMsgText('Email address must be valid');
+    } else if (isNaN(signup.phone) || signup.phone.length !== 10) {
+      return setErrorMsgText('Phone number must be a number of 10 digits');
+    } else {
+      handleSignup();
+    }
+  };
+
   const handleSignup = async () => {
     const credentials = {
       userName: signup.userName,
@@ -35,12 +51,18 @@ export default function Signup() {
       email: signup.email,
       phone: signup.phone,
     };
-    const res = await userService.signupHandler(credentials);
-    dispatch(setUser(res.userInfo));
-    dispatch(setLoggedIn());
-    watcherService.setToken(res.token);
-    window.localStorage.setItem('loggedUser', JSON.stringify(res));
-    history.push('/watchers');
+    setSignupBtnText('Signing up');
+    try {
+      const res = await userService.signupHandler(credentials);
+      dispatch(setUser(res.userInfo));
+      dispatch(setLoggedIn());
+      watcherService.setToken(res.token);
+      window.localStorage.setItem('loggedUser', JSON.stringify(res));
+      history.push('/watchers');
+    } catch (err) {
+      setErrorMsgText(err);
+      setSignupBtnText('Signup');
+    }
   };
 
   return (
@@ -83,7 +105,7 @@ export default function Signup() {
             onChange={handlePhoneChange}
           />
         </div>
-        <button className="btn signup-btn" onClick={handleSignup}>
+        <button className="btn signup-btn" onClick={checkValidationAndSubmit}>
           {signupBtnText}
         </button>
         <div className="signup-error-msg">{errorMsgText}</div>

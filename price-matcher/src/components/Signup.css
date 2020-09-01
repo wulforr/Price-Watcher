@@ -39,3 +39,11 @@
 .signup-btn {
   padding: 1% 2%;
 }
+
+.signup-error-msg {
+  color: red;
+  display: block;
+  width: 100%;
+  margin-top: -2%;
+  font-size: 16px;
+}
