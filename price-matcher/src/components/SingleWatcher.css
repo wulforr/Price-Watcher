@@ -1,0 +1,12 @@
+.single-watcher-wrapper {
+  padding: 2% 5%;
+}
+
+.chartTitle {
+  color: var(--another-color);
+  font-size: 3vw;
+}
+
+.chart-wrapper {
+  padding: 3% 5%;
+}

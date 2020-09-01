@@ -13,6 +13,9 @@ export default function AllWatchers() {
   const allWatchers = useSelector((state) => state.watchers);
   const isLoggedIn = useSelector((state) => state.User.isLoggedIn);
   const notification = useSelector((state) => state.notification);
+  const isLoading = useSelector((state) => state.watchers.isloading);
+
+  console.log(isLoading);
 
   const fetchwatchers = async () => {
     if (isLoggedIn) {
@@ -39,9 +42,15 @@ export default function AllWatchers() {
     <div className="allwatchers">
       {notification.message.length > 0 ? <Notification /> : <></>}
       <AddWatcher fetchwatchers={fetchwatchers} />
-      {allWatchers.items.map((ele) => (
-        <Watcher details={ele} key={ele._id} />
-      ))}
+      {allWatchers.items.length > 0 ? (
+        allWatchers.items.map((ele) => <Watcher details={ele} key={ele._id} />)
+      ) : (
+        <div>
+          {isLoading
+            ? 'Please wait while we load your watchers'
+            : 'Add some watcher to track their prices everyday.'}
+        </div>
+      )}
     </div>
   ) : (
     <Login />

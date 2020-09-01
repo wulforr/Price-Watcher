@@ -109,10 +109,10 @@ app.post('/api/user/login', async (req, res) => {
 app.post('/api/watcher', async (req, res) => {
   const body = req.body;
   const webpage = await axios.get(body.url);
-  // const $ = cheerio.load(webpage.data);
+  const $ = cheerio.load(webpage.data);
   // let price = $('#priceblock_ourprice').text().substring(2);
-  // let title = $('#productTitle').text();
-  // title = title.replace(/\s\s+/g, ' ');
+  let title = $('#productTitle').text();
+  title = title.replace(/\s\s+/g, ' ');
   // price = priceUtil.priceFormatter(price);
   // console.log('price', price);
   const price = webScraperUtil.getPriceFromRawHTMLData(webpage.data);

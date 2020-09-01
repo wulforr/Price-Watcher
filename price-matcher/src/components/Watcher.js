@@ -11,6 +11,7 @@ import {
   setColor,
   setTimeoutId,
 } from '../reducers/notificationReducer';
+import { getPrice } from '../utils/utils';
 
 export default function Watcher({ details }) {
   const history = useHistory();
@@ -66,7 +67,7 @@ export default function Watcher({ details }) {
       </div>
       <h3>{details.title}</h3>
       <p>yourprice - {details.maxPrice}</p>
-      <p>currentPrice - {details.pastPrices[details.pastPrices.length - 1].price}</p>
+      <p>currentPrice - {getPrice(details)}</p>
     </div>
   );
 }

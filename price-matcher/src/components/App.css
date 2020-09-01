@@ -135,6 +135,10 @@ h1 {
   padding-bottom: 1%;
   font-size: 22px;
 }
+.login-error-msg {
+  color: red;
+  width: 100%;
+}
 
 .allwatchers {
   display: flex;
@@ -228,10 +232,6 @@ h1 {
   opacity: 1;
   margin-right: 0;
   /* width: 40px; */
-}
-
-.chartTitle {
-  color: var(--another-color);
 }
 
 .lighten {
