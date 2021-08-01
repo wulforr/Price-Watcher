@@ -33,11 +33,14 @@ const getToken = (req, res, next) => {
 app.use(getToken);
 
 app.get('/', async (req, res) => {
-  const webpage = await axios.get(
-    'https://www.amazon.in/dp/B07XG2KHCN/ref=Oct_DLandingS_rdp_237d15c2',
-  );
-  const price = await webScraperUtil.getPriceFromRawHTMLData(webpage.data);
-  res.send(`Working ${price}`);
+  try {
+    const webpage = await axios.get('https://www.amazon.in/dp/B087JYBBSR');
+    const price = await webScraperUtil.getPriceFromRawHTMLData(webpage.data);
+    res.send(`Working ${price}`);
+  } catch (err) {
+    console.log('err in get', err);
+    res.send('failed');
+  }
 });
 
 // add User

@@ -4,8 +4,7 @@ const priceUtil = require('./price');
 
 exports.getPriceFromRawHTMLData = (data) => {
   const $ = cheerio.load(data);
-  let price =
-    $('#priceblock_ourprice').text().substring(2) || $('#priceblock_dealprice').text().substring(2);
+  let price = $('#priceblock_ourprice').text() || $('#priceblock_dealprice').text();
   let title = $('#productTitle').text();
   title = title.replace(/\s\s+/g, ' ');
   price = priceUtil.priceFormatter(price);
