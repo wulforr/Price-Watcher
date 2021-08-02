@@ -18,27 +18,6 @@ a {
   color: var(--main-bg-color);
 }
 
-.landingPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-}
-.contentdiv {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 50%;
-  flex-wrap: wrap;
-}
-h1 {
-  color: var(--another-color);
-  font-size: 64px;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
 .btn {
   /* padding: 2%; */
   border-radius: 4px;
@@ -62,16 +41,6 @@ h1 {
     var(--another-color),
     var(--secondary-green)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.landingbuttonsdiv {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.landingbtn {
-  padding: 2%;
 }
 
 .loginbtn {

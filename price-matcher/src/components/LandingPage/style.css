@@ -1,0 +1,62 @@
+.landingPageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+}
+.contentDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  flex-wrap: wrap;
+}
+
+.contentDiv > h1 {
+  color: var(--another-color);
+  font-size: 3rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.contentDiv > p {
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+.landingButtonsDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.landingBtn {
+  padding: 3% 5%;
+}
+
+@media only screen and (min-width: 600px) {
+  .contentDiv {
+    width: 65%;
+    justify-content: flex-start;
+  }
+  .contentDiv > h1 {
+    font-size: 4rem;
+  }
+  .contentDiv > p {
+    text-align: left;
+  }
+  .landingButtonsDiv {
+    justify-content: flex-start;
+  }
+
+  .landingBtn {
+    padding: 2%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contentDiv {
+    width: 50%;
+  }
+}
