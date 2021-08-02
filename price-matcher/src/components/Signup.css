@@ -37,7 +37,7 @@
 }
 
 .signup-btn {
-  padding: 1% 2%;
+  padding: 1% 5%;
 }
 
 .signup-error-msg {
@@ -46,4 +46,22 @@
   width: 100%;
   margin-top: -2%;
   font-size: 16px;
+}
+
+.signup-input-wrapper > .inputText {
+  width: 50%;
+  padding: 1% 2%;
+  margin: 0% 2%;
+  border: 1px solid #888888;
+  border-radius: 4px;
+}
+.signup-input-wrapper > .inputText:focus {
+  border: 2px solid var(--another-color);
+}
+
+.loginTextLink {
+  color: var(--secondary-green);
+  border-bottom: 2px solid var(--another-color);
+  padding-bottom: 1%;
+  font-size: 22px;
 }

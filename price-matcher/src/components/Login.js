@@ -55,10 +55,10 @@ export default function Login() {
   };
 
   return (
-    <div className="loginDiv">
+    <div className="loginWrapper">
       <div className="loginContainer">
         <h1>Login</h1>
-        <div className="inputSet">
+        <div className="formRow">
           <label>Username</label>
           <input
             type="text"
@@ -68,22 +68,22 @@ export default function Login() {
           />
         </div>
 
-        <div className="inputSet">
+        <div className="formRow">
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             onChange={handlePasswordChange}
             value={login.password}
             className="inputText"
           />
         </div>
-        <button onClick={handleLogin} className="btn loginbtn">
+        <button onClick={handleLogin} className="btn loginBtn">
           {loginBtnText}
         </button>
         <div className="login-error-msg">{errorMsgText}</div>
         <div className="loginText">
           Not a user
-          <Link to="/signup" className="loginTextLink loginText">
+          <Link to="/signup" className="signupTextLink">
             {' Signup'}
           </Link>
         </div>
