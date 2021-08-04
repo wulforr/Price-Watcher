@@ -8,9 +8,9 @@
 }
 
 .signup-container {
-  width: 65%;
-  height: 65%;
-  background-color: var(--main-bg-color);
+  width: 85%;
+  /* height: 65%; */
+  /* background-color: var(--main-bg-color); */
   /* box-shadow: 4px 4px #eeeeee; */
   display: flex;
   justify-content: center;
@@ -18,26 +18,23 @@
   flex-wrap: wrap;
   text-align: center;
   max-width: 700px;
-  padding: 2% 1%;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  padding: 5% 2%;
+  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
-  border-left: 8px solid var(--another-color);
-  border-radius: 12px;
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12); */
+  /* border-left: 8px solid var(--another-color); */
+  /* border-radius: 12px; */
 }
 
 .signup-input-wrapper {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
+  margin: 2% 0;
 }
 
 .signup-input-wrapper label {
-  width: 30%;
   text-align: right;
-}
-
-.signup-btn {
-  padding: 1% 5%;
 }
 
 .signup-error-msg {
@@ -45,23 +42,66 @@
   display: block;
   width: 100%;
   margin-top: -2%;
-  font-size: 16px;
+  font-size: 0.75rem;
 }
 
 .signup-input-wrapper > .inputText {
-  width: 50%;
-  padding: 1% 2%;
-  margin: 0% 2%;
+  width: 100%;
+  padding: 3%;
+  margin: 1% 0;
   border: 1px solid #888888;
   border-radius: 4px;
 }
 .signup-input-wrapper > .inputText:focus {
-  border: 2px solid var(--another-color);
+  border: 0.5px solid var(--another-color);
+}
+
+.signup-btn {
+  padding: 2% 5%;
+  margin: 5% 0;
 }
 
 .loginTextLink {
   color: var(--secondary-green);
   border-bottom: 2px solid var(--another-color);
   padding-bottom: 1%;
-  font-size: 22px;
+  font-size: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .signup-container {
+    width: 65%;
+    background-color: var(--main-bg-color);
+    padding: 2% 1%;
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
+    -moz-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
+    box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
+    border-left: 4px solid var(--another-color);
+    border-radius: 4px;
+  }
+
+  .signup-input-wrapper label {
+    width: 30%;
+    text-align: right;
+  }
+
+  .signup-btn {
+    padding: 1% 5%;
+  }
+
+  .signup-error-msg {
+    margin-top: -2%;
+    margin-bottom: 2%;
+    font-size: 1rem;
+  }
+
+  .signup-input-wrapper > .inputText {
+    width: 50%;
+    padding: 1% 2%;
+    margin: 0% 2%;
+  }
+
+  .loginTextLink {
+    font-size: 22px;
+  }
 }
