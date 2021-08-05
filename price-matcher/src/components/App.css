@@ -46,40 +46,6 @@ a {
   /* min-height: 100vh; */
 }
 
-.addwatcher {
-  width: 50%;
-  height: 150px;
-  /* border: 2px solid var(--primary-color); */
-  padding: 2%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 5% 15%;
-  border-radius: 0px 6px 6px 0px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072);
-  border-left: 4px solid var(--primary-color);
-  /* background-color: rgba(240, 240, 240, 0.3); */
-  background-color: var(--main-bg-color);
-}
-.addwatcherbtn {
-  padding: 1% 3%;
-  margin-left: 20%;
-}
-
-.urlInput {
-  width: 80%;
-}
-
-.priceInput {
-  width: 60%;
-  padding: 3% 6%;
-}
-
-.priceInputRow {
-  width: 40%;
-}
 .watcher {
   padding: 2%;
   width: 50%;

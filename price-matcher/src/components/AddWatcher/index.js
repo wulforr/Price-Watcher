@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPrice, setUrl, setItems } from '../reducers/watcherReducer';
-import watcherService from '../services/watcher';
+import { setPrice, setUrl, setItems } from '../../reducers/watcherReducer';
+import watcherService from '../../services/watcher';
 import {
   addNotification,
   RemoveNotification,
   setColor,
   setTimeoutId,
-} from '../reducers/notificationReducer';
+} from '../../reducers/notificationReducer';
+import style from './style.module.css';
 
 export default function AddWatcher() {
   const url = useSelector((state) => state.watchers.url);
@@ -51,26 +52,26 @@ export default function AddWatcher() {
   };
 
   return (
-    <div className="addwatcher">
-      <div className="inputSet">
+    <div className={style.addWatcherWrapper}>
+      <div className={style.formRow}>
         <label>URL</label>
         <input
           type="text"
           onChange={(e) => dispatch(setUrl(e.target.value))}
           value={url}
-          className="inputText urlInput"
+          className={style.inputText + ' ' + style.urlInput}
         />
       </div>
-      <div className="inputSet priceInputRow">
+      <div className={style.formRow + ' ' + style.priceInputRow}>
         <label>Price</label>
         <input
           type="text"
           onChange={(e) => dispatch(setPrice(e.target.value))}
           value={price}
-          className="inputText priceInput"
+          className={style.inputText + ' ' + style.priceInput}
         />
       </div>
-      <button className="btn addwatcherbtn" onClick={handleAddWatcher}>
+      <button className={`btn ${style.addWatcherBtn}`} onClick={handleAddWatcher}>
         {addWatcherBtnText}
       </button>
     </div>

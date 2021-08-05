@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import watcherService from '../services/watcher';
+import watcherService from '../../services/watcher';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsLoading, removeIsLoading, setItems } from '../reducers/watcherReducer';
-import Login from './Login';
-import AddWatcher from './AddWatcher';
-import Notification from './Notification';
+import { setIsLoading, removeIsLoading, setItems } from '../../reducers/watcherReducer';
+import Login from '../Login';
+import AddWatcher from '../AddWatcher';
+import Notification from '../Notification';
 // import watcher from './Watcher'
-import Watcher from './Watcher';
+import Watcher from '../Watcher';
 
 export default function AllWatchers() {
   const dispatch = useDispatch();
