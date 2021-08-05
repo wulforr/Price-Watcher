@@ -1,6 +1,6 @@
 import axios from 'axios';
 const baseUrl = 'http://localhost:5000/api/user';
-const watcherbaseUrl = 'http://localhost:5000/api/watcher';
+const watcherBaseUrl = 'http://localhost:5000/api/watcher';
 
 let token = null;
 
@@ -24,13 +24,13 @@ const getWatchers = async () => {
 };
 
 const addWatcher = async (newWatcher) => {
-  const res = await axios.post(watcherbaseUrl, newWatcher, config);
+  const res = await axios.post(watcherBaseUrl, newWatcher, config);
 
   return res.data;
 };
 
 const deleteWatcher = async (id) => {
-  const res = await axios.delete(`${watcherbaseUrl}/${id}`, config);
+  const res = await axios.delete(`${watcherBaseUrl}/${id}`, config);
 
   return res.data;
 };
