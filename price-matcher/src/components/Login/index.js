@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserName, setPassword } from '../reducers/loginReducer';
-import { setUser, setLoggedIn } from '../reducers/userReducer';
-import userService from '../services/user';
-import watcherService from '../services/watcher';
+import { setUserName, setPassword } from '../../reducers/loginReducer';
+import { setUser, setLoggedIn } from '../../reducers/userReducer';
+import userService from '../../services/user';
+import watcherService from '../../services/watcher';
 import { useHistory, Link } from 'react-router-dom';
-import './login.css';
+import style from './style.module.css';
 
 export default function Login() {
   const login = useSelector((state) => state.login);
@@ -55,35 +55,35 @@ export default function Login() {
   };
 
   return (
-    <div className="loginWrapper">
-      <div className="loginContainer">
+    <div className={style.loginWrapper}>
+      <div className={style.loginContainer}>
         <h1>Login</h1>
-        <div className="formRow">
+        <div className={style.formRow}>
           <label>Username</label>
           <input
             type="text"
             onChange={handleUserNameChange}
             value={login.userName}
-            className="inputText"
+            className={style.inputText}
           />
         </div>
 
-        <div className="formRow">
+        <div className={style.formRow}>
           <label>Password</label>
           <input
             type="password"
             onChange={handlePasswordChange}
             value={login.password}
-            className="inputText"
+            className={style.inputText}
           />
         </div>
-        <button onClick={handleLogin} className="btn loginBtn">
+        <button onClick={handleLogin} className={`btn ${style.loginBtn}`}>
           {loginBtnText}
         </button>
-        <div className="login-error-msg">{errorMsgText}</div>
-        <div className="loginText">
+        <div className={style.loginErrorMsg}>{errorMsgText}</div>
+        <div className={style.loginText}>
           Not a user
-          <Link to="/signup" className="signupTextLink">
+          <Link to="/signup" className={style.signupTextLink}>
             {' Signup'}
           </Link>
         </div>

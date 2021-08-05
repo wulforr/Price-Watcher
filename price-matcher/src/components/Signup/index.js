@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserName, setPassword, setEmail, setPhone } from '../reducers/signupReducer';
+import { setUserName, setPassword, setEmail, setPhone } from '../../reducers/signupReducer';
 import { useHistory, Link } from 'react-router-dom';
-import userService from '../services/user';
-import { setUser, setLoggedIn } from '../reducers/userReducer';
-import watcherService from '../services/watcher';
-import './Signup.css';
+import userService from '../../services/user';
+import { setUser, setLoggedIn } from '../../reducers/userReducer';
+import watcherService from '../../services/watcher';
+import style from './style.module.css';
 
 export default function Signup() {
   const signup = useSelector((state) => state.signup);
@@ -29,7 +29,8 @@ export default function Signup() {
   };
 
   const checkValidationAndSubmit = () => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (signup.userName.length < 4) {
       return setErrorMsgText('Username must be greater than or equal to 4 characters');
@@ -66,52 +67,52 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-div">
-      <div className="signup-container">
+    <div className={style.signupDiv}>
+      <div className={style.signupContainer}>
         <h1>Signup</h1>
-        <div className="signup-input-wrapper">
+        <div className={style.signupInputWrapper}>
           <label>Username:</label>
           <input
             type="text"
-            className="inputText"
+            className={style.inputText}
             onChange={handleUserNameChange}
             value={signup.userName}
           />
         </div>
-        <div className="signup-input-wrapper">
+        <div className={style.signupInputWrapper}>
           <label>Password:</label>
           <input
             type="text"
-            className="inputText"
+            className={style.inputText}
             value={signup.password}
             onChange={handlePasswordChange}
           />
         </div>
-        <div className="signup-input-wrapper">
+        <div className={style.signupInputWrapper}>
           <label>Email:</label>
           <input
             type="text"
-            className="inputText"
+            className={style.inputText}
             value={signup.email}
             onChange={handleEmailChange}
           />
         </div>
-        <div className="signup-input-wrapper">
+        <div className={style.signupInputWrapper}>
           <label>Phone:</label>
           <input
             type="text"
-            className="inputText"
+            className={style.inputText}
             value={signup.phone}
             onChange={handlePhoneChange}
           />
         </div>
-        <button className="btn signup-btn" onClick={checkValidationAndSubmit}>
+        <button className={`btn ${style.signupBtn}`} onClick={checkValidationAndSubmit}>
           {signupBtnText}
         </button>
-        <div className="signup-error-msg">{errorMsgText}</div>
-        <div className="loginText">
+        <div className={style.signupErrorMsg}>{errorMsgText}</div>
+        <div className={style.loginText}>
           Already a user
-          <Link to="/login" className="loginTextLink loginText">
+          <Link to="/login" className={style.loginTextLink + ' ' + style.loginText}>
             {' Login'}
           </Link>
         </div>

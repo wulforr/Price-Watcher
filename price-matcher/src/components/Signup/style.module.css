@@ -1,4 +1,4 @@
-.signup-div {
+.signupDiv {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.signup-container {
+.signupContainer {
   width: 85%;
   /* height: 65%; */
   /* background-color: var(--main-bg-color); */
@@ -26,18 +26,18 @@
   /* border-radius: 12px; */
 }
 
-.signup-input-wrapper {
+.signupInputWrapper {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   margin: 2% 0;
 }
 
-.signup-input-wrapper label {
+.signupInputWrapper label {
   text-align: right;
 }
 
-.signup-error-msg {
+.signupErrorMsg {
   color: red;
   display: block;
   width: 100%;
@@ -45,18 +45,18 @@
   font-size: 0.75rem;
 }
 
-.signup-input-wrapper > .inputText {
+.signupInputWrapper > .inputText {
   width: 100%;
   padding: 3%;
   margin: 1% 0;
   border: 1px solid #888888;
   border-radius: 4px;
 }
-.signup-input-wrapper > .inputText:focus {
+.signupInputWrapper > .inputText:focus {
   border: 0.5px solid var(--another-color);
 }
 
-.signup-btn {
+.signupBtn {
   padding: 2% 5%;
   margin: 5% 0;
 }
@@ -69,7 +69,7 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .signup-container {
+  .signupContainer {
     width: 65%;
     background-color: var(--main-bg-color);
     padding: 2% 1%;
@@ -80,22 +80,22 @@
     border-radius: 4px;
   }
 
-  .signup-input-wrapper label {
+  .signupInputWrapper label {
     width: 30%;
     text-align: right;
   }
 
-  .signup-btn {
+  .signupBtn {
     padding: 1% 5%;
   }
 
-  .signup-error-msg {
+  .signupErrorMsg {
     margin-top: -2%;
     margin-bottom: 2%;
     font-size: 1rem;
   }
 
-  .signup-input-wrapper > .inputText {
+  .signupInputWrapper > .inputText {
     width: 50%;
     padding: 1% 2%;
     margin: 0% 2%;

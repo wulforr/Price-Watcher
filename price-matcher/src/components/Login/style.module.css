@@ -48,7 +48,7 @@
   margin: 5% 0;
 }
 
-.login-error-msg {
+.loginErrorMsg {
   color: red;
   width: 100%;
 }
@@ -97,7 +97,7 @@
     padding: 1% 5%;
   }
 
-  .login-error-msg {
+  .loginErrorMsg {
     color: red;
     width: 100%;
   }
