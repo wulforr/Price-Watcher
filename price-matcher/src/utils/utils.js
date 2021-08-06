@@ -1,37 +1,40 @@
-import moment from 'moment';
+import * as dayjs from 'dayjs';
 
 export const getPrice = (watcherDetails) => {
   const price = watcherDetails.pastPrices[watcherDetails.pastPrices.length - 1].price;
-  if (price) {
-    return price;
-  } else {
-    return 'Item is unavailable on the website right now';
-  }
+  if (!price) return 'Item is unavailable on the website right now';
+  return price;
 };
 
 export const getDates = (pastPrices, filter = 'weekly') => {
   let pastPricesWithFormattedDates = pastPrices;
   let tempArray = [];
-  if (filter === 'daily') {
-    pastPricesWithFormattedDates = pastPrices.map((ele) => {
-      return { ...ele, date: moment(new Date(ele.date)).format('DD/MM') };
-    });
-  } else if (filter === 'weekly') {
-    pastPricesWithFormattedDates = pastPrices.map((ele, index) => {
-      if (index % 7 === 0) {
-        tempArray.push({ ...ele, date: moment(new Date(ele.date)).format('DD/MM') });
-      }
-    });
-    return tempArray;
-  } else if (filter === 'monthly') {
-    pastPricesWithFormattedDates = pastPrices.map((ele, index) => {
-      if (index % 30 === 0) {
-        tempArray.push({ ...ele, date: moment(new Date(ele.date)).format('MM/YY') });
-      }
-    });
-    return tempArray;
+  switch (filter) {
+    case 'daily': {
+      return pastPrices.map((ele) => {
+        return { ...ele, date: dayjs(new Date(ele.date)).format('DD/MM') };
+      });
+    }
+    case 'weekly': {
+      pastPrices.forEach((ele, index) => {
+        if (index % 7 === 0) {
+          tempArray.push({ ...ele, date: dayjs(new Date(ele.date)).format('DD/MM') });
+        }
+      });
+      return tempArray;
+    }
+    case 'monthly': {
+      pastPrices.forEach((ele, index) => {
+        if (index % 30 === 0) {
+          tempArray.push({ ...ele, date: dayjs(new Date(ele.date)).format('MM/YY') });
+        }
+      });
+      return tempArray;
+    }
+    default: {
+      return pastPricesWithFormattedDates;
+    }
   }
-  return pastPricesWithFormattedDates;
 };
 
 export const getMaxPrice = (data) => {
