@@ -35,66 +35,6 @@ a {
   background: linear-gradient(to right, var(--another-color), var(--secondary-green));
 }
 
-.allwatchers {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  /* background-color: grey; */
-  /* background-color: rgba(240, 240, 240, 0.8); */
-  /* min-height: 100vh; */
-}
-
-.watcher {
-  padding: 2%;
-  width: 50%;
-  border-radius: 0px 6px 6px 0px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    2.8px 0 2.2px rgba(0, 0, 0, 0.034), 6.7px 0 5.3px rgba(0, 0, 0, 0.048);
-  border-left: 4px solid var(--another-color);
-  /* background-color: rgba(240, 240, 240, 0.3); */
-  background-color: var(--main-bg-color);
-  margin-top: 2%;
-  position: relative;
-  overflow: hidden;
-}
-
-.watcher:hover {
-  cursor: pointer;
-}
-
-.watcher:hover .topRight {
-  /* display: block; */
-}
-
-.topRight {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-}
-
-.delete {
-  background-color: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  height: 40px;
-  margin-right: -40px;
-  transition: 0.2s linear;
-  opacity: 0;
-  width: 40px;
-}
-
-.watcher:hover .delete {
-  opacity: 1;
-  margin-right: 0;
-  /* width: 40px; */
-}
-
 .lighten {
   opacity: 0.5;
 }

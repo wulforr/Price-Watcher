@@ -5,8 +5,8 @@ import { setIsLoading, removeIsLoading, setItems } from '../../reducers/watcherR
 import Login from '../Login';
 import AddWatcher from '../AddWatcher';
 import Notification from '../Notification';
-// import watcher from './Watcher'
-import Watcher from '../Watcher';
+import WatcherCard from '../WatcherCard';
+import style from './style.module.css';
 
 export default function AllWatchers() {
   const dispatch = useDispatch();
@@ -37,11 +37,11 @@ export default function AllWatchers() {
   console.count('rendered');
 
   return isLoggedIn ? (
-    <div className="allwatchers">
+    <div className={style.allwatchers}>
       {notification.message.length > 0 ? <Notification /> : <></>}
       <AddWatcher fetchwatchers={fetchwatchers} />
       {allWatchers.items.length > 0 ? (
-        allWatchers.items.map((ele) => <Watcher details={ele} key={ele._id} />)
+        allWatchers.items.map((ele) => <WatcherCard details={ele} key={ele._id} />)
       ) : (
         <div>
           {isLoading

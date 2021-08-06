@@ -2,22 +2,28 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import watcherService from '../services/watcher';
+import watcherService from '../../services/watcher';
 import { useSelector, useDispatch } from 'react-redux';
-import { setItems } from '../reducers/watcherReducer';
+import { setItems } from '../../reducers/watcherReducer';
 import {
   addNotification,
   RemoveNotification,
   setColor,
   setTimeoutId,
-} from '../reducers/notificationReducer';
-import { getPrice, getFormattedText } from '../utils/utils';
+} from '../../reducers/notificationReducer';
+import { getPrice, getFormattedText } from '../../utils/utils';
+import { LineChart, Line, ResponsiveContainer } from 'recharts';
+import { getPast30DaysData } from '../../utils/utils';
+import style from './style.module.css';
 
 export default function Watcher({ details }) {
   const history = useHistory();
   const items = useSelector((state) => state.watchers.items);
   const notification = useSelector((state) => state.notification);
   const dispatch = useDispatch();
+
+  const data = getPast30DaysData(details.pastPrices);
+  console.log('data', data);
 
   const deleteWatcherWrapper = async (e) => {
     //stop propogation of events otherwise it would open details of watcher with chart
@@ -49,15 +55,15 @@ export default function Watcher({ details }) {
 
   return (
     <div
-      className="watcher"
+      className={style.watcher}
       onClick={() => {
         history.push('/singleWatcher', { details });
       }}
     >
-      <div className="topRight">
+      <div className={style.topRight}>
         {/* <div>Add</div> */}
         <div
-          className="delete"
+          className={style.delete}
           onClick={(e) => {
             deleteWatcherWrapper(e);
           }}
@@ -65,9 +71,20 @@ export default function Watcher({ details }) {
           <FontAwesomeIcon icon={faTrash} color="white" />
         </div>
       </div>
-      <h3>{getFormattedText(details.title)}</h3>
-      <p>yourprice - {details.maxPrice}</p>
-      <p>currentPrice - {getPrice(details)}</p>
+      <div className={style.cardContent}>
+        <h3>{getFormattedText(details.title)}</h3>
+        <div className={style.priceDetails}>
+          <p>Current Price - {getPrice(details)}</p>
+          <p>Threshold price - {details.maxPrice}</p>
+        </div>
+        <div className={style.chartWrapper}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart width={300} height={100} data={data}>
+              <Line type="monotone" dataKey="price" stroke="#8884d8" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </div>
   );
 }

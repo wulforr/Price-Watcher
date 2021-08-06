@@ -9,7 +9,7 @@ export const getPrice = (watcherDetails) => {
   }
 };
 
-export const getDates = (pastPrices, filter) => {
+export const getDates = (pastPrices, filter = 'weekly') => {
   let pastPricesWithFormattedDates = pastPrices;
   let tempArray = [];
   if (filter === 'daily') {
@@ -59,4 +59,11 @@ export const getFormattedText = (text, maxLength = 40) => {
     return text.slice(0, maxLength) + '...';
   }
   return text;
+};
+
+export const getPast30DaysData = (pastPrices) => {
+  if (pastPrices.length <= 30) {
+    return pastPrices;
+  }
+  return pastPrices.slice(-30);
 };
