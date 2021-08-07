@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { XAxis, YAxis, Tooltip, AreaChart, Area, ResponsiveContainer } from 'recharts';
-import { getDates, getMaxPrice, getMinPrice, getFormattedText } from '../../utils/utils';
+import { getDates, getMaxPrice, getMinPrice, getFormattedText, getPrice } from '../../utils/utils';
 import style from './style.module.css';
 
 export default function SingleWatcher(props) {
@@ -10,6 +10,7 @@ export default function SingleWatcher(props) {
   const dates = getDates(data, chartFilter);
   const maxPrice = getMaxPrice(data);
   const minPrice = getMinPrice(data);
+  const currentPrice = getPrice(details);
   // const getYAxisTicks = () => {
   //   let ticksArray = [];
   //   ticksArray.push(0);
@@ -55,6 +56,32 @@ export default function SingleWatcher(props) {
     <div className={style.singleWatcherWrapper}>
       <div className={style.card}>
         <h2 className={style.chartTitle}>{getFormattedText(details.title, 50)}</h2>
+        <ul className={style.priceDetails}>
+          <li>
+            <span className={style.name}>Current Price</span>
+            <span className={style.value}>&#8377;{currentPrice}</span>
+          </li>
+          <li>
+            <span className={style.name}>Maximum Price</span>
+            <span className={style.value}>&#8377;{maxPrice}</span>
+          </li>
+          <li>
+            <span className={style.name}>Minimum Price</span>
+            <span className={style.value}>&#8377;{minPrice}</span>
+          </li>
+          <li>
+            <span className={style.name}>Threshold Price</span>
+            <span className={style.value}>&#8377;{currentPrice}</span>
+          </li>
+          <li>
+            <span className={style.name}>Average Price</span>
+            <span className={style.value}>&#8377;{currentPrice}</span>
+          </li>
+          <li>
+            <span className={style.name}>Suggested Price</span>
+            <span className={style.value}>&#8377;{currentPrice}</span>
+          </li>
+        </ul>
       </div>
       <div className={style.card}>
         <div className={style.optionsWrapper}>
@@ -87,10 +114,10 @@ export default function SingleWatcher(props) {
         </div>
         <div className={style.chartWrapper}>{renderLineChart}</div>
       </div>
-      <div className={style.priceDetails}>
+      {/* <div className={style.priceDetails}>
         <p>Maximum Price : {maxPrice}</p>
         <p>Minimum Price : {minPrice}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

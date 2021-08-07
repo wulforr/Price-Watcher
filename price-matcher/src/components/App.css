@@ -6,18 +6,22 @@
   --another-color: #06d69e;
   /* --another-color: #8884d8; */
   --secondary-green: #1aa781;
+  --black: hsl(240, 16%, 16%);
   --base: hsl(0, 0%, 100%);
   --page-base: hsl(218, 34%, 96%);
   --button-border: hsla(0, 0%, 59%, 0.5);
   --button-background: var(--base);
+  --ink-600: hsla(240, 12%, 43%, 0.8);
   --ink-700: hsl(240, 12%, 43%);
+  --ink-900: var(--black);
   --link: hsl(243, 93%, 67%);
   --bg-light-blue: hsla(236, 96%, 70%, 0.08);
   --bg-light-blue-border: 1px solid hsla(234, 77%, 60%, 0.04);
+  --border-color: hsla(216, 41%, 87%, 0.8);
 }
 
 .container {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color: rgba(240, 240, 240, 0.6);
 }

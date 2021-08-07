@@ -21,7 +21,7 @@
   box-shadow: 0 23px 20px -24px hsl(219deg 37% 18% / 24%);
   background-color: var(--base);
   width: 100%;
-  padding: 1.5rem 0.5rem;
+  padding: 1.5rem 1rem;
   margin: 0.5rem 0;
 }
 
@@ -67,15 +67,32 @@
   width: 100%;
   height: clamp(200px, 40vh, 500px);
   font-size: 0.75rem;
-  margin-left: -1rem;
+  margin-left: -1.5rem;
 }
 
 .priceDetails {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  color: var(--ink-700);
+  border: 1.5px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 2rem 0 1rem;
 }
 
-.priceDetails > p {
-  margin: 0.5rem 0;
+.priceDetails > li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1.5px solid var(--border-color);
+}
+
+.value {
+  color: var(--ink-900);
 }
 
 @media only screen and (min-width: 768px) {
