@@ -29,13 +29,13 @@ export default function SingleWatcher(props) {
       <AreaChart width={600} height={350} data={dates}>
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-            <stop offset="60%" stopColor="#82ca9d" stopOpacity={0} />
+            <stop offset="5%" stopColor="#645df9" stopOpacity={0.3} />
+            <stop offset="70%" stopColor="#645df9" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="date" stroke="#333" />
+        <XAxis dataKey="date" stroke="#22222f" />
         <YAxis
-          stroke="#333"
+          stroke="#22222f"
           type="number"
           // allowDecimals={false}
           // ticks={getYAxisTicks()}
@@ -44,7 +44,7 @@ export default function SingleWatcher(props) {
         <Area
           type="monotone"
           dataKey="price"
-          stroke="#82ca9d"
+          stroke="#645df9"
           fillOpacity={1}
           fill="url(#colorPv)"
         />

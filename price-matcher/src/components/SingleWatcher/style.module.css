@@ -75,6 +75,7 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  justify-content: space-between;
   color: var(--ink-700);
   border: 1.5px solid var(--border-color);
   border-radius: 0.5rem;
@@ -98,10 +99,24 @@
 @media only screen and (min-width: 768px) {
   .singleWatcherWrapper {
     justify-content: center;
+    padding: 2% 5%;
   }
   .card {
     border-radius: 16px;
     padding: 1.5rem;
+  }
+
+  .priceDetails > li {
+    width: 48%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-bottom: none;
+    margin: 0.25rem 0;
+  }
+
+  .priceDetails > li:nth-of-type(3),
+  .priceDetails > li:nth-of-type(4) {
+    background-color: var(--stripes);
   }
 
   .chartTitle {
@@ -111,5 +126,22 @@
 
   .chartWrapper {
     font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card {
+    padding: 1.5rem 2rem;
+  }
+  .priceDetails > li {
+    width: 30%;
+    font-size: 1rem;
+  }
+  .priceDetails > li:nth-of-type(3) {
+    background-color: unset;
+  }
+  .priceDetails > li:nth-of-type(2),
+  .priceDetails > li:nth-of-type(6) {
+    background-color: var(--stripes);
   }
 }
