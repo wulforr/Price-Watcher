@@ -1,0 +1,98 @@
+.singleWatcherWrapper {
+  padding: 2% 0%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  font-size: 1.25rem;
+  background-color: var(--page-base);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.chartTitle {
+  font-size: 2rem;
+  justify-self: flex-start;
+  width: 100%;
+  font-weight: 500;
+  font-family: 'Inter var', 'Inter', sans-serif;
+}
+
+.card {
+  box-shadow: 0 23px 20px -24px hsl(219deg 37% 18% / 24%);
+  background-color: var(--base);
+  width: 100%;
+  padding: 1.5rem 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.optionsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--button-border);
+  width: max-content;
+  border-radius: 4px;
+}
+
+.chartOptionBtn {
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  background-color: var(--button-background);
+  color: var(--ink-700);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.activeBtn {
+  color: var(--link);
+  background: var(--bg-light-blue);
+  border-color: var(--bg-light-blue-border);
+  outline: none;
+}
+
+.chartSelect {
+  padding: 0.25rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.chartWrapper {
+  padding: 2% 0%;
+  width: 100%;
+  height: clamp(200px, 40vh, 500px);
+  font-size: 0.75rem;
+  margin-left: -1rem;
+}
+
+.priceDetails {
+  width: 100%;
+}
+
+.priceDetails > p {
+  margin: 0.5rem 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .singleWatcherWrapper {
+    justify-content: center;
+  }
+  .card {
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .chartTitle {
+    font-size: 2.5rem;
+    letter-spacing: -0.15rem;
+  }
+
+  .chartWrapper {
+    font-size: 1rem;
+  }
+}
