@@ -11,7 +11,6 @@ const cheerio = require('cheerio');
 require('dotenv').config();
 app.use(express.json());
 app.use(cors());
-const priceUtil = require('./Utils/price');
 const webScraperUtil = require('./Utils/webScraping');
 
 const url = process.env.MONGOURI;
@@ -113,15 +112,16 @@ app.post('/api/watcher', async (req, res) => {
   const body = req.body;
   const webpage = await axios.get(body.url);
   const $ = cheerio.load(webpage.data);
-  // let price = $('#priceblock_ourprice').text().substring(2);
   let title = $('#productTitle').text();
   title = title.replace(/\s\s+/g, ' ');
-  // price = priceUtil.priceFormatter(price);
-  // console.log('price', price);
   const price = webScraperUtil.getPriceFromRawHTMLData(webpage.data);
   if (isNaN(price)) {
     res.status(400).send('cannot process this website');
     return;
+  }
+
+  if (price < body.maxPrice) {
+    return res.status(400).send('The current price is already below threshold price');
   }
 
   const token = req.token;
@@ -176,9 +176,6 @@ const getPrices = async () => {
   prices = await Promise.all(listOfPromises);
 
   for (let i = 0; i < prices.length; i++) {
-    // const $ = cheerio.load(prices[i].data);
-    // let price = $('#priceblock_ourprice').text().substring(2);
-    // price = priceUtil.priceFormatter(price);
     const price = webScraperUtil.getPriceFromRawHTMLData(prices[i].data);
     ans.push(price);
   }

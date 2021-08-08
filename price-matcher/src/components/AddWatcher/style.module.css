@@ -44,6 +44,11 @@
   margin: 1.5rem 0 1rem;
 }
 
+.error {
+  font-size: 0.8rem;
+  color: red;
+}
+
 @media only screen and (min-width: 768px) {
   .addWatcherWrapper {
     width: 70%;
@@ -59,7 +64,7 @@
   }
   .addWatcherBtn {
     padding: 0.7rem 2rem;
-    margin-left: 20%;
+    margin-left: 10%;
   }
 
   .formRow {
@@ -83,12 +88,16 @@
   }
 
   .priceInputRow {
-    width: 40%;
+    width: 50%;
   }
 
   .priceInput {
     width: 60%;
     margin-left: 3%;
+  }
+
+  .error {
+    margin-left: 3.5rem;
   }
 }
 

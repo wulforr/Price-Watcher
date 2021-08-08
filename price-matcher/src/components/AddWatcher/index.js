@@ -17,10 +17,37 @@ export default function AddWatcher() {
   const dispatch = useDispatch();
 
   const [addWatcherBtnText, setAddWatcherBtnText] = useState('Add Watcher');
+  const [urlError, setUrlError] = useState('');
+  const [priceError, setPriceError] = useState('');
+
+  const checkValidation = () => {
+    let isValid = true;
+    const regexQuery =
+      '^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$';
+    const urlRegex = new RegExp(regexQuery, 'i');
+    console.log(urlRegex.test(url));
+    if (!urlRegex.test(url)) {
+      setUrlError('Please enter a valid Url');
+      isValid = false;
+    } else {
+      setUrlError('');
+    }
+    if (isNaN(price) || isNaN(parseInt(price))) {
+      setPriceError('Please enter a valid Number');
+      isValid = false;
+    } else {
+      setPriceError('');
+    }
+    return isValid;
+  };
 
   const handleAddWatcher = async (e) => {
     e.preventDefault();
-    setAddWatcherBtnText('Adding Watcher...');
+    const isValid = checkValidation();
+    if (!isValid) {
+      return;
+    }
+    setAddWatcherBtnText('Adding...');
     const newWatcher = {
       url,
       maxPrice: price,
@@ -61,6 +88,7 @@ export default function AddWatcher() {
           value={url}
           className={style.inputText + ' ' + style.urlInput}
         />
+        <p className={style.error}>{urlError}</p>
       </div>
       <div className={style.formRow + ' ' + style.priceInputRow}>
         <label>Price</label>
@@ -70,6 +98,7 @@ export default function AddWatcher() {
           value={price}
           className={style.inputText + ' ' + style.priceInput}
         />
+        <p className={style.error}>{priceError}</p>
       </div>
       <button className={`btn ${style.addWatcherBtn}`} onClick={handleAddWatcher}>
         {addWatcherBtnText}
