@@ -75,7 +75,7 @@ export default function Watcher({ details }) {
         <h3>{getFormattedText(details.title)}</h3>
         <div className={style.priceDetails}>
           <p>Current Price - {getPrice(details)}</p>
-          <p>Threshold price - {details.maxPrice}</p>
+          <p>Threshold price - {details.maxPrice.toFixed(2)}</p>
         </div>
         <div className={style.chartWrapper}>
           <ResponsiveContainer width="100%" height="100%">

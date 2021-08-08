@@ -4,7 +4,7 @@
   border-radius: 0.75rem;
   box-shadow: 0 23px 20px -24px hsl(219deg 37% 18% / 24%);
   background-color: var(--base);
-  margin: 5%;
+  margin: 2% 5%;
   position: relative;
   overflow: hidden;
 }
@@ -84,7 +84,7 @@
 @media only screen and (min-width: 768px) {
   .watcher {
     width: 70%;
-    margin: 5% 15%;
+    margin: 2% 15%;
   }
   .delete {
     background-color: red;
