@@ -11,6 +11,7 @@
   --page-base: hsl(218, 34%, 96%);
   --button-border: hsla(0, 0%, 59%, 0.5);
   --button-background: var(--base);
+  --button-primary: var(--link);
   --ink-600: hsla(240, 12%, 43%, 0.8);
   --ink-700: hsl(240, 12%, 43%);
   --ink-900: var(--black);
@@ -19,34 +20,38 @@
   --bg-light-blue-border: 1px solid hsla(234, 77%, 60%, 0.04);
   --border-color: hsla(216, 41%, 87%, 0.8);
   --stripes: hsl(245, 40%, 98%);
+  --input-border: var(--button-border);
 }
 
 .container {
   width: 100%;
   min-height: 100vh;
-  background-color: rgba(240, 240, 240, 0.6);
+  /* background-color: rgba(240, 240, 240, 0.6); */
+  background-color: var(--page-base);
 }
 
 a {
   text-decoration: none;
-  color: var(--main-bg-color);
+  color: var(--base);
 }
 
 .btn {
   /* padding: 2%; */
   border-radius: 4px;
-  color: var(--main-bg-color);
-  background-color: var(--another-color);
-  border: 2px solid var(--another-color);
+  color: var(--base);
+  /* background-color: var(--another-color); */
+  /* border: 2px solid var(--another-color); */
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
+  background-color: var(--button-primary);
+  border: 2px solid var(--button-primary);
 }
 
 .btn:hover {
   cursor: pointer;
-  background: var(--another-color);
+  /* background: var(--another-color);
   background: -webkit-linear-gradient(to right, var(--another-color), var(--secondary-green));
-  background: linear-gradient(to right, var(--another-color), var(--secondary-green));
+  background: linear-gradient(to right, var(--another-color), var(--secondary-green)); */
 }
 
 .lighten {

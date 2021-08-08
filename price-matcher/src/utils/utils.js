@@ -70,3 +70,8 @@ export const getPast30DaysData = (pastPrices) => {
   }
   return pastPrices.slice(-30);
 };
+
+export const getAveragePrice = (data) => {
+  const sum = data.reduce((acc, curr) => acc + parseInt(curr.price), 0);
+  return (sum / data.length).toFixed(2);
+};

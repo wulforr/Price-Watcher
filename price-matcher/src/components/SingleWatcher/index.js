@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
-import { XAxis, YAxis, Tooltip, AreaChart, Area, ResponsiveContainer } from 'recharts';
-import { getDates, getMaxPrice, getMinPrice, getFormattedText, getPrice } from '../../utils/utils';
+import {
+  XAxis,
+  YAxis,
+  Tooltip,
+  AreaChart,
+  Area,
+  ResponsiveContainer,
+  ReferenceLine,
+} from 'recharts';
+import {
+  getDates,
+  getMaxPrice,
+  getMinPrice,
+  getFormattedText,
+  getPrice,
+  getAveragePrice,
+} from '../../utils/utils';
 import style from './style.module.css';
 
 export default function SingleWatcher(props) {
@@ -8,9 +23,11 @@ export default function SingleWatcher(props) {
   const details = props.location.state.details;
   const data = details.pastPrices;
   const dates = getDates(data, chartFilter);
+  const currentPrice = getPrice(details);
   const maxPrice = getMaxPrice(data);
   const minPrice = getMinPrice(data);
-  const currentPrice = getPrice(details);
+  const averagePrice = getAveragePrice(data);
+  const thresholdPrice = details.maxPrice.toFixed(2);
   // const getYAxisTicks = () => {
   //   let ticksArray = [];
   //   ticksArray.push(0);
@@ -49,6 +66,13 @@ export default function SingleWatcher(props) {
           fill="url(#colorPv)"
         />
         <Tooltip />
+        <ReferenceLine
+          y={thresholdPrice}
+          label="Threshold"
+          stroke="#8686A1"
+          strokeDasharray="3 3"
+          alwaysShow
+        />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -71,11 +95,11 @@ export default function SingleWatcher(props) {
           </li>
           <li>
             <span className={style.name}>Threshold Price</span>
-            <span className={style.value}>&#8377;{currentPrice}</span>
+            <span className={style.value}>&#8377;{thresholdPrice}</span>
           </li>
           <li>
             <span className={style.name}>Average Price</span>
-            <span className={style.value}>&#8377;{currentPrice}</span>
+            <span className={style.value}>&#8377;{averagePrice}</span>
           </li>
           <li>
             <span className={style.name}>Suggested Price</span>

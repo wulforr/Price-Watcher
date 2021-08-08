@@ -82,9 +82,9 @@ export default function Login() {
         </button>
         <div className={style.loginErrorMsg}>{errorMsgText}</div>
         <div className={style.loginText}>
-          Not a user
+          Don't have an account?
           <Link to="/signup" className={style.signupTextLink}>
-            {' Signup'}
+            {' Register for free'}
           </Link>
         </div>
       </div>

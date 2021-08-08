@@ -9,9 +9,6 @@
 
 .loginContainer {
   width: 85%;
-  /* height: 50%; */
-  /* background-color: var(--main-bg-color); */
-  /* box-shadow: 4px 4px #eeeeee; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -19,11 +16,9 @@
   text-align: center;
   max-width: 700px;
   padding: 5% 2%;
-  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12); */
-  /* border-left: 8px solid var(--another-color); */
-  /* border-radius: 6px; */
+}
+.loginContainer > h1 {
+  margin: 1.5rem;
 }
 
 .formRow {
@@ -54,8 +49,7 @@
 }
 
 .signupTextLink {
-  color: var(--secondary-green);
-  border-bottom: 2px solid var(--another-color);
+  color: var(--link);
   padding-bottom: 1%;
   font-size: 1rem;
 }
@@ -67,34 +61,29 @@
 
 @media only screen and (min-width: 600px) {
   .loginContainer {
-    width: 50%;
-    /* height: 50%; */
-    background-color: var(--main-bg-color);
-    /* box-shadow: 4px 4px #eeeeee; */
-    padding: 2% 1%;
-    -webkit-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-    -moz-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-    box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-    border-left: 4px solid var(--another-color);
-    border-radius: 4px;
+    width: 80%;
+    background-color: var(--base);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 23px 20px -24px hsl(219deg 37% 18% / 24%);
+    /* border-left: 4px solid var(--another-color); */
+    border-radius: 0.75rem;
   }
   .formRow {
     width: 100%;
-    display: unset;
   }
 
   .formRow > .inputText {
-    width: 50%;
-    padding: 1% 2%;
-    margin: 0% 2%;
-    border: 1px solid #888888;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
   }
   .formRow > .inputText:focus {
-    border: 2px solid var(--another-color);
+    border: 1.5px solid var(--link);
+    outline: 0;
   }
   .loginBtn {
-    padding: 1% 5%;
+    padding: 0.7rem 2rem;
   }
 
   .loginErrorMsg {
@@ -103,14 +92,17 @@
   }
 
   .signupTextLink {
-    color: var(--secondary-green);
-    border-bottom: 2px solid var(--another-color);
-    padding-bottom: 1%;
-    font-size: 22px;
+    font-size: 1.1rem;
   }
 
   .loginText {
-    font-size: 22px;
+    font-size: 1.1rem;
     margin-top: 0;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .loginContainer {
+    width: 50%;
   }
 }
