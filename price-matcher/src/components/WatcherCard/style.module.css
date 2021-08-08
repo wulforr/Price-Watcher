@@ -1,11 +1,9 @@
 .watcher {
   padding: 2%;
   width: 100%;
-  border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-  -moz-box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-  box-shadow: 1px 1px 5px 1px rgba(170, 170, 170, 1);
-  background-color: var(--main-bg-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 23px 20px -24px hsl(219deg 37% 18% / 24%);
+  background-color: var(--base);
   margin: 5%;
   position: relative;
   overflow: hidden;
@@ -86,7 +84,6 @@
 @media only screen and (min-width: 768px) {
   .watcher {
     width: 70%;
-    border-left: 4px solid var(--another-color);
     margin: 5% 15%;
   }
   .delete {

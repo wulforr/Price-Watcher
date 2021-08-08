@@ -110,10 +110,10 @@ export default function Signup() {
           {signupBtnText}
         </button>
         <div className={style.signupErrorMsg}>{errorMsgText}</div>
-        <div className={style.loginText}>
-          Already a user
-          <Link to="/login" className={style.loginTextLink + ' ' + style.loginText}>
-            {' Login'}
+        <div className={style.signupText}>
+          Already registered?
+          <Link to="/login" className={style.loginTextLink}>
+            {' Login here.'}
           </Link>
         </div>
       </div>
