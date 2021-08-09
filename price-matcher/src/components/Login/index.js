@@ -38,17 +38,14 @@ export default function Login() {
       userName: login.userName,
       password: login.password,
     };
-    console.log(credentials);
     try {
       const res = await userService.loginHandler(credentials);
       watcherService.setToken(res.token);
       window.localStorage.setItem('userlogged', JSON.stringify(res));
       dispatch(setUser(res.userInfo));
       dispatch(setLoggedIn());
-      console.log(res);
       history.push('/watchers');
     } catch (err) {
-      console.log(err);
       setLoginBtnText('Login');
       setErrorMsgText('Username or Password is incorrect');
     }

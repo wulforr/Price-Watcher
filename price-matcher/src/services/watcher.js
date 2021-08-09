@@ -10,16 +10,13 @@ let config = {
 
 const setToken = (newToken) => {
   token = `bearer ${newToken}`;
-  // console.log(token)
   config = {
     headers: { Authorization: token },
   };
 };
 
 const getWatchers = async () => {
-  // console.log(token,config)
   const res = await axios.get(baseUrl, config);
-  console.log(res.data);
   return res.data;
 };
 

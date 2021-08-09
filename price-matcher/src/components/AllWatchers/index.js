@@ -25,12 +25,6 @@ export default function AllWatchers() {
   };
 
   useEffect(() => {
-    console.log('mounted');
-    return () => console.log('unmounted');
-  }, []);
-
-  useEffect(() => {
-    console.log('allwatcher', isLoggedIn);
     fetchwatchers();
   }, [dispatch, isLoggedIn]);
 

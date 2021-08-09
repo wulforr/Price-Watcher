@@ -25,7 +25,6 @@ export default function AddWatcher() {
     const regexQuery =
       '^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$';
     const urlRegex = new RegExp(regexQuery, 'i');
-    console.log(urlRegex.test(url));
     if (!urlRegex.test(url)) {
       setUrlError('Please enter a valid Url');
       isValid = false;
@@ -67,7 +66,6 @@ export default function AddWatcher() {
       const timeoutId = setTimeout(() => dispatch(RemoveNotification()), 2000);
       dispatch(setTimeoutId(timeoutId));
     } catch (err) {
-      console.log(err);
       //show notification for error in adding the new watcher
       dispatch(setColor('red'));
       dispatch(addNotification('There was an error while adding the watcher please try again'));

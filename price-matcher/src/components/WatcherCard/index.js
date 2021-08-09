@@ -23,7 +23,6 @@ export default function Watcher({ details }) {
   const dispatch = useDispatch();
 
   const data = getPast30DaysData(details.pastPrices);
-  console.log('data', data);
 
   const deleteWatcherWrapper = async (e) => {
     //stop propogation of events otherwise it would open details of watcher with chart
@@ -32,7 +31,6 @@ export default function Watcher({ details }) {
     const itemsBeforeDeletion = [...items];
     //remove item from state before removing from database to give user feeling that it is deleted
     const tempItems = items.filter((ele) => ele._id !== details._id);
-    console.log(tempItems, details);
     dispatch(setItems(tempItems));
     // clear timeout before creating a new timeout this clears if successive clicks from user
     clearTimeout(notification.timeoutId);
@@ -43,7 +41,6 @@ export default function Watcher({ details }) {
       const timeoutId = setTimeout(() => dispatch(RemoveNotification()), 2000);
       dispatch(setTimeoutId(timeoutId));
     } catch (err) {
-      console.log(err);
       //if deletion of item is failed revert back changes
       dispatch(setItems(itemsBeforeDeletion));
       dispatch(setColor('red'));

@@ -28,19 +28,6 @@ export default function SingleWatcher(props) {
   const minPrice = getMinPrice(data);
   const averagePrice = getAveragePrice(data);
   const thresholdPrice = details.maxPrice.toFixed(2);
-  // const getYAxisTicks = () => {
-  //   let ticksArray = [];
-  //   ticksArray.push(0);
-  //   let x = 0;
-  //   while (x < maxPrice) {
-  //     x += parseInt(maxPrice / 5);
-  //     ticksArray.push(x);
-  //   }
-  //   ticksArray.push(x + parseInt(maxPrice / 5));
-  //   return ticksArray;
-  // };
-
-  console.log(dates);
   const renderLineChart = (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart width={600} height={350} data={dates}>
@@ -51,13 +38,7 @@ export default function SingleWatcher(props) {
           </linearGradient>
         </defs>
         <XAxis dataKey="date" stroke="#22222f" />
-        <YAxis
-          stroke="#22222f"
-          type="number"
-          // allowDecimals={false}
-          // ticks={getYAxisTicks()}
-          // domain={[0, maxPrice]}
-        />
+        <YAxis stroke="#22222f" type="number" />
         <Area
           type="monotone"
           dataKey="price"
@@ -138,10 +119,6 @@ export default function SingleWatcher(props) {
         </div>
         <div className={style.chartWrapper}>{renderLineChart}</div>
       </div>
-      {/* <div className={style.priceDetails}>
-        <p>Maximum Price : {maxPrice}</p>
-        <p>Minimum Price : {minPrice}</p>
-      </div> */}
     </div>
   );
 }
