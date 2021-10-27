@@ -40,7 +40,7 @@ export const getDates = (pastPrices, filter = 'weekly') => {
 export const getMaxPrice = (data) => {
   let maxPrice = data[0].price;
   data.forEach((ele) => {
-    if (ele.price > maxPrice) {
+    if (Number(ele.price) > Number(maxPrice)) {
       maxPrice = ele.price;
     }
   });
@@ -50,7 +50,7 @@ export const getMaxPrice = (data) => {
 export const getMinPrice = (data) => {
   let minPrice = data[0].price;
   data.forEach((ele) => {
-    if (ele.price && ele.price < minPrice && ele.price != 0) {
+    if (ele.price && Number(ele.price) < Number(minPrice) && ele.price != 0) {
       minPrice = ele.price;
     }
   });
