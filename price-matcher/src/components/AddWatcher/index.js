@@ -85,6 +85,7 @@ export default function AddWatcher() {
           onChange={(e) => dispatch(setUrl(e.target.value))}
           value={url}
           className={style.inputText + ' ' + style.urlInput}
+          placeholder="Add URL of the product detail page of the product you want to buy from Amazon"
         />
         <p className={style.error}>{urlError}</p>
       </div>
@@ -95,6 +96,7 @@ export default function AddWatcher() {
           onChange={(e) => dispatch(setPrice(e.target.value))}
           value={price}
           className={style.inputText + ' ' + style.priceInput}
+          placeholder="Price that you want to buy for"
         />
         <p className={style.error}>{priceError}</p>
       </div>

@@ -35,6 +35,11 @@
   padding: 3% 5%;
 }
 
+.landingNote {
+  color: #888;
+  font-size: 1.2rem;
+}
+
 @media only screen and (min-width: 600px) {
   .contentDiv {
     width: 65%;

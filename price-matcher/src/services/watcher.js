@@ -1,6 +1,6 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5000/api/user';
-const watcherBaseUrl = 'http://localhost:5000/api/watcher';
+const baseUrl = 'https://pricewatcherapi.herokuapp.com/api/user';
+const watcherBaseUrl = 'https://pricewatcherapi.herokuapp.com/api/watcher';
 
 let token = null;
 

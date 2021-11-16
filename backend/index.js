@@ -109,59 +109,91 @@ app.post('/api/user/login', async (req, res) => {
 
 // add watcher
 app.post('/api/watcher', async (req, res) => {
-  const body = req.body;
-  const webpage = await axios.get(body.url);
-  const $ = cheerio.load(webpage.data);
-  let title = $('#productTitle').text();
-  title = title.replace(/\s\s+/g, ' ');
-  const price = webScraperUtil.getPriceFromRawHTMLData(webpage.data);
-  if (isNaN(price)) {
-    res.status(400).send('cannot process this website');
-    return;
-  }
+  try {
+    const body = req.body;
+    const webpage = await axios.get(body.url);
+    const $ = cheerio.load(webpage.data);
+    let title = $('#productTitle').text();
+    title = title.replace(/\s\s+/g, ' ');
+    const price = webScraperUtil.getPriceFromRawHTMLData(webpage.data);
+    if (isNaN(price)) {
+      res.status(400).send('cannot process this website');
+      return;
+    }
 
-  if (price < body.maxPrice) {
-    return res.status(400).send('The current price is already below threshold price');
-  }
+    if (price < body.maxPrice) {
+      return res.status(400).send('The current price is already below threshold price');
+    }
 
-  const token = req.token;
+    const token = req.token;
 
-  const decodedToken = jwt.verify(token, process.env.SECRET);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
 
-  if (!token || !decodedToken.id) {
-    return response.status(401).json({
-      err: 'invalid or missing token',
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({
+        err: 'invalid or missing token',
+      });
+    }
+    const user = await User.findById(decodedToken.id);
+
+    const newWatcher = new Watcher({
+      url: body.url,
+      maxPrice: body.maxPrice,
+      title,
+      pastPrices: [
+        {
+          price,
+          date: new Date(),
+        },
+      ],
+      watching: true,
+      User: user._id,
     });
+    const response = await newWatcher.save();
+    user.priceWatchers = user.priceWatchers.concat(response._id);
+    await user.save();
+    res.send(response);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('internal server error');
   }
-  const user = await User.findById(decodedToken.id);
-
-  const newWatcher = new Watcher({
-    url: body.url,
-    maxPrice: body.maxPrice,
-    title,
-    pastPrices: [
-      {
-        price,
-        date: new Date(),
-      },
-    ],
-    watching: true,
-    User: user._id,
-  });
-  const response = await newWatcher.save();
-  user.priceWatchers = user.priceWatchers.concat(response._id);
-  await user.save();
-  res.send(response);
 });
 
 const sendEmail = (email) => {
   console.log('email', email);
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      console.log('Operation performed:', email);
-      resolve(email);
-    }, 2000),
-  );
+  // return new Promise((resolve) =>
+  //   setTimeout(() => {
+  //     console.log('Operation performed:', email);
+  //     resolve(email);
+  //   }, 2000),
+  // );
+
+  async function main() {
+    let testAccount = await nodemailer.createTestAccount();
+
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      secure: false,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+
+    let info = await transporter.sendMail({
+      from: '"Fred Foo 👻" <foo@example.com>',
+      to: 'bar@example.com, baz@example.com',
+      subject: 'Hello ✔',
+      text: 'Hello world?',
+      html: '<b>Hello world?</b>',
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+  }
+
+  main().catch(console.error);
 };
 
 const getPrices = async () => {

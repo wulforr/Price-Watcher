@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5000/api/user';
+const baseUrl = 'https://pricewatcherapi.herokuapp.com/api/user';
 
 const loginHandler = async (credentials) => {
   const res = await axios.post(`${baseUrl}/login`, credentials);

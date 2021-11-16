@@ -51,6 +51,25 @@ export default function Login() {
     }
   };
 
+  const handleGuestLogin = async () => {
+    setLoginBtnText('Logging in...');
+    const credentials = {
+      userName: 'guest',
+      password: 'guest123',
+    };
+    try {
+      const res = await userService.loginHandler(credentials);
+      watcherService.setToken(res.token);
+      window.localStorage.setItem('userlogged', JSON.stringify(res));
+      dispatch(setUser(res.userInfo));
+      dispatch(setLoggedIn());
+      history.push('/watchers');
+    } catch (err) {
+      setLoginBtnText('Login');
+      setErrorMsgText('There were some issues logging you in please try again');
+    }
+  };
+
   return (
     <div className={style.loginWrapper}>
       <div className={style.loginContainer}>
@@ -77,6 +96,12 @@ export default function Login() {
         <button onClick={handleLogin} className={`btn ${style.loginBtn}`}>
           {loginBtnText}
         </button>
+        <div className={style.guestUserText}>
+          Login as a{' '}
+          <span className={style.guestUserLink} onClick={handleGuestLogin}>
+            Guest User.
+          </span>
+        </div>
         <div className={style.loginErrorMsg}>{errorMsgText}</div>
         <div className={style.loginText}>
           Don't have an account?
